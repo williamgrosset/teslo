@@ -1,0 +1,20 @@
+{
+  "name": "teslo",
+  "version": "0.0.0",
+  "description": "Elo rating system",
+  "author": "William Grosset",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/williamgrosset/teslo"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist && rm -rf node_modules",
+    "start": "node dist/index.js"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}
