@@ -6,7 +6,7 @@ export const ErrorType = {
   MATCH_COMPLETE: 'Match is completed',
   MAX_SIZE: 'Cannot add more than 2 players to a duel',
   MISSING_OPPONENT_ELO: 'Could not find opponent elo'
-} as const
+}
 
 type ErrorTypeKey = keyof typeof ErrorType
 
