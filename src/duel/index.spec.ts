@@ -1,5 +1,6 @@
-import { Player } from '../player'
 import { Duel } from '.'
+import { Player } from '../player'
+import { ErrorType } from '../match/error'
 
 describe('Duel', () => {
   test('instantiates with empty constructor', () => {
@@ -28,7 +29,7 @@ describe('Duel', () => {
       match.addPlayer(player1)
       match.addPlayer(player2)
       match.addPlayer(player3)
-    }).toThrow('Cannot add more than 2 players to a duel')
+    }).toThrow(ErrorType.MAX_SIZE)
   })
 
   test('calculates elo for player 1 win', () => {
@@ -79,6 +80,6 @@ describe('Duel', () => {
       match.addPlayer(player2)
       match.calculate('1')
       match.calculate('1')
-    }).toThrow('Match is completed')
+    }).toThrow(ErrorType.MATCH_COMPLETE)
   })
 })
