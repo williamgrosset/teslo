@@ -82,4 +82,14 @@ describe('Duel', () => {
       match.calculate('1')
     }).toThrow(ErrorType.MATCH_COMPLETE)
   })
+
+  test('throws error when calculating elo with missing opponent', () => {
+    expect(() => {
+      const player1 = new Player('1', 1000)
+      const match = new Duel()
+
+      match.addPlayer(player1)
+      match.calculate('1')
+    }).toThrow(ErrorType.MISSING_OPPONENT_ELO)
+  })
 })

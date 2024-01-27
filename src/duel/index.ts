@@ -45,12 +45,12 @@ export class Duel implements Match {
   }
 
   addPlayer(player: Player) {
-    if (this._completed) {
-      throw new MatchError(ErrorType.MATCH_COMPLETE)
-    }
-
     if (this.players.size === 2) {
       throw new MatchError(ErrorType.MAX_SIZE)
+    }
+
+    if (this._completed) {
+      throw new MatchError(ErrorType.MATCH_COMPLETE)
     }
 
     this.players.set(player.id, player)
