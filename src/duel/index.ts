@@ -1,6 +1,7 @@
 import { Player } from '../player'
 import { Match, Options } from '../match/types'
 import { K_FACTOR, Result } from '../match/constants'
+import { MatchError, ErrorType } from '../match/error'
 
 export class Duel implements Match {
   readonly players: Map<string, Player>
@@ -40,11 +41,11 @@ export class Duel implements Match {
 
   addPlayer(player: Player) {
     if (this._completed) {
-      throw new Error('Match is completed')
+      throw new MatchError(ErrorType.MATCH_COMPLETE)
     }
 
     if (this.players.size === 2) {
-      throw new Error('Cannot add more than 2 players to a duel')
+      throw new MatchError(ErrorType.MAX_SIZE)
     }
 
     this.players.set(player.id, player)
@@ -52,7 +53,7 @@ export class Duel implements Match {
 
   calculate(playerId: string) {
     if (this._completed) {
-      throw new Error('Match is completed')
+      throw new MatchError(ErrorType.MATCH_COMPLETE)
     }
 
     const players = this.playerMapToEloMap()
@@ -61,7 +62,7 @@ export class Duel implements Match {
       const opponentElo = this.findOpponentElo(players, id)
 
       if (!opponentElo) {
-        throw new Error('Could not find opponent elo')
+        throw new MatchError(ErrorType.MISSING_OPPONENT_ELO)
       }
 
       const result = playerId === id ? Result.WIN : Result.LOSS
