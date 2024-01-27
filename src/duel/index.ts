@@ -1,7 +1,12 @@
 import { Player } from '../player'
 import { Match, Options } from '../match/types'
-import { K_FACTOR, Result } from '../match/constants'
 import { MatchError, ErrorType } from '../match/error'
+
+const DEFAULT_K_FACTOR = 32
+const Result = {
+  LOSS: 0,
+  WIN: 1
+}
 
 export class Duel implements Match {
   readonly players: Map<string, Player>
@@ -10,7 +15,7 @@ export class Duel implements Match {
 
   constructor(options?: Options) {
     this.players = new Map()
-    this.kFactor = options?.kFactor ?? K_FACTOR
+    this.kFactor = options?.kFactor ?? DEFAULT_K_FACTOR
     this._completed = false
   }
 

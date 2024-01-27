@@ -1,4 +1,4 @@
-import { ELO_SCALE_FACTOR } from './constants'
+const DEFAULT_ELO_SCALE_FACTOR = 400
 
 export class Player {
   private _id: string
@@ -26,6 +26,9 @@ export class Player {
   }
 
   getExpectedResult(opponentElo: number): number {
-    return 1 / (1 + Math.pow(10, (opponentElo - this._elo) / ELO_SCALE_FACTOR))
+    return (
+      1 /
+      (1 + Math.pow(10, (opponentElo - this._elo) / DEFAULT_ELO_SCALE_FACTOR))
+    )
   }
 }
