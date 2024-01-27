@@ -17,7 +17,7 @@ export class Duel implements Match {
     return this._completed
   }
 
-  private playerMapToEloMap() {
+  private playerMapToEloMap(): Map<string, number> {
     const players = new Map<string, number>()
     for (const [id, player] of this.players) {
       players.set(id, player.elo)
@@ -50,7 +50,7 @@ export class Duel implements Match {
     this.players.set(player.id, player)
   }
 
-  calculate(playerId: string): void {
+  calculate(playerId: string) {
     if (this._completed) {
       throw new Error('Match is completed')
     }

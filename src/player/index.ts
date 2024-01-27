@@ -9,7 +9,7 @@ export class Player {
     this.elo = elo
   }
 
-  getExpectedResult(opponentElo: number) {
+  getExpectedResult(opponentElo: number): number {
     return 1 / (1 + Math.pow(10, (opponentElo - this.elo) / ELO_SCALE_FACTOR))
   }
 }
