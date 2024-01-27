@@ -13,7 +13,7 @@ export class Duel implements Match {
     this._completed = false
   }
 
-  public get completed(): boolean {
+  get completed(): boolean {
     return this._completed
   }
 
