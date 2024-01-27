@@ -13,16 +13,8 @@ export class Duel implements Match {
     this._completed = false
   }
 
-  get completed(): boolean {
+  public get completed(): boolean {
     return this._completed
-  }
-
-  set completed(completed: boolean) {
-    if (this._completed) {
-      throw new Error('Match is completed')
-    }
-
-    this._completed = completed
   }
 
   private playerMapToEloMap() {
