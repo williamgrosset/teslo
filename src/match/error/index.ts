@@ -4,7 +4,7 @@ const ERROR_NAME = 'MATCH_ERROR'
 
 export const ErrorType = {
   MATCH_COMPLETE: 'Match is completed',
-  MAX_SIZE: 'Cannot add more than 2 players to a duel',
+  MAX_PLAYERS: 'Cannot add more players',
   MISSING_OPPONENT_ELO: 'Could not find opponent elo'
 }
 

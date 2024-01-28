@@ -46,7 +46,7 @@ export class Duel implements Match {
 
   addPlayer(player: Player) {
     if (this.players.size === 2) {
-      throw new MatchError(ErrorType.MAX_SIZE)
+      throw new MatchError(ErrorType.MAX_PLAYERS)
     }
 
     if (this._completed) {

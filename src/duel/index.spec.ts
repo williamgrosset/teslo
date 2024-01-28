@@ -29,7 +29,7 @@ describe('Duel', () => {
       match.addPlayer(player1)
       match.addPlayer(player2)
       match.addPlayer(player3)
-    }).toThrow(ErrorType.MAX_SIZE)
+    }).toThrow(ErrorType.MAX_PLAYERS)
   })
 
   test('calculates elo for player 1 win', () => {
