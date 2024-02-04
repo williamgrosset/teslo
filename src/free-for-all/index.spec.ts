@@ -77,6 +77,22 @@ describe('FreeForAll', () => {
     expect(player3.elo).toBe(806)
   })
 
+  test('calculates elo for player 3 win with 3 players', () => {
+    const player1 = new Player('1', 1000)
+    const player2 = new Player('2', 900)
+    const player3 = new Player('3', 800)
+    const match = new FreeForAll()
+
+    match.addPlayer(player1)
+    match.addPlayer(player2)
+    match.addPlayer(player3)
+    match.calculate(['3', '2', '1'])
+
+    expect(player1.elo).toBe(978)
+    expect(player2.elo).toBe(900)
+    expect(player3.elo).toBe(822)
+  })
+
   test('calculates elo for player 1 win with 100 players', () => {
     const match = new FreeForAll()
 
