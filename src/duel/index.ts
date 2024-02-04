@@ -1,34 +1,11 @@
-import { Player } from '../player'
-import { Match, Options } from '../match/types'
+import { Match, Options } from '../match'
 import { MatchError, ErrorType } from '../match/error'
 
-const DEFAULT_K_FACTOR = 32
-const Result = {
-  LOSS: 0,
-  WIN: 1
-}
+type DuelOptions = Partial<Omit<Options, 'maxPlayers'>>
 
-export class Duel implements Match {
-  readonly players: Map<string, Player>
-  readonly kFactor: number
-  private _completed: boolean
-
-  constructor(options?: Options) {
-    this.players = new Map()
-    this.kFactor = options?.kFactor ?? DEFAULT_K_FACTOR
-    this._completed = false
-  }
-
-  get completed(): boolean {
-    return this._completed
-  }
-
-  private playerMapToEloMap(): Map<string, number> {
-    const players = new Map<string, number>()
-    for (const [id, player] of this.players) {
-      players.set(id, player.elo)
-    }
-    return players
+export class Duel extends Match {
+  constructor(options?: DuelOptions) {
+    super({ ...options, maxPlayers: 2 })
   }
 
   private findOpponentElo(
@@ -44,20 +21,8 @@ export class Duel implements Match {
     return undefined
   }
 
-  addPlayer(player: Player) {
-    if (this.players.size === 2) {
-      throw new MatchError(ErrorType.MAX_PLAYERS)
-    }
-
-    if (this._completed) {
-      throw new MatchError(ErrorType.MATCH_COMPLETE)
-    }
-
-    this.players.set(player.id, player)
-  }
-
   calculate(playerId: string) {
-    if (this._completed) {
+    if (this.completed) {
       throw new MatchError(ErrorType.MATCH_COMPLETE)
     }
 
@@ -70,15 +35,11 @@ export class Duel implements Match {
         throw new MatchError(ErrorType.MISSING_OPPONENT_ELO)
       }
 
-      const result = playerId === id ? Result.WIN : Result.LOSS
-      const expectedResult = player.getExpectedResult(opponentElo)
-      const elo = Math.round(
-        player.elo + this.kFactor * (result - expectedResult)
-      )
+      const elo = this.calculatePlayerElo(player, opponentElo, playerId === id)
 
       player.elo = elo
     }
 
-    this._completed = true
+    this.completed = true
   }
 }

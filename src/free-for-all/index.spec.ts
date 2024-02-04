@@ -8,17 +8,6 @@ describe('FreeForAll', () => {
     expect(match).toBeDefined()
   })
 
-  test('adds players to match', () => {
-    const player1 = new Player('1', 1000)
-    const player2 = new Player('2', 900)
-    const match = new FreeForAll()
-
-    match.addPlayer(player1)
-    match.addPlayer(player2)
-
-    expect(match.players.size).toBe(2)
-  })
-
   test('calculates elo for player 1 win with 2 players', () => {
     const player1 = new Player('1', 1000)
     const player2 = new Player('2', 900)

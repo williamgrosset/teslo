@@ -1,56 +1,13 @@
-import { Player } from '../player'
-import { Match, Options } from '../match/types'
+import { Match, Options } from '../match'
 import { MatchError, ErrorType } from '../match/error'
 
-const DEFAULT_MIN_SIZE = 2
-const DEFAULT_MAX_SIZE = 256
-const DEFAULT_K_FACTOR = 32
-const Result = {
-  LOSS: 0,
-  WIN: 1
-}
-
-export class FreeForAll implements Match {
-  readonly players: Map<string, Player>
-  readonly minPlayers: number
-  readonly maxPlayers: number
-  readonly kFactor: number
-  private _completed: boolean
-
+export class FreeForAll extends Match {
   constructor(options?: Options) {
-    this.players = new Map()
-    this.minPlayers = options?.minPlayers ?? DEFAULT_MIN_SIZE
-    this.maxPlayers = options?.maxPlayers ?? DEFAULT_MAX_SIZE
-    this.kFactor = options?.kFactor ?? DEFAULT_K_FACTOR
-    this._completed = false
-  }
-
-  get completed(): boolean {
-    return this._completed
-  }
-
-  private playerMapToEloMap(): Map<string, number> {
-    const players = new Map<string, number>()
-    for (const [id, player] of this.players) {
-      players.set(id, player.elo)
-    }
-    return players
-  }
-
-  addPlayer(player: Player) {
-    if (this._completed) {
-      throw new MatchError(ErrorType.MATCH_COMPLETE)
-    }
-
-    if (this.players.size === this.maxPlayers) {
-      throw new MatchError(ErrorType.MAX_PLAYERS)
-    }
-
-    this.players.set(player.id, player)
+    super(options)
   }
 
   calculate(playerIds: string[]) {
-    if (this._completed) {
+    if (this.completed) {
       throw new MatchError(ErrorType.MATCH_COMPLETE)
     }
 
@@ -81,11 +38,7 @@ export class FreeForAll implements Match {
             throw new MatchError(ErrorType.MISSING_OPPONENT_ELO)
           }
 
-          const result = j > i ? Result.WIN : Result.LOSS
-          const expectedResult = player.getExpectedResult(opponentElo)
-          const elo = Math.round(
-            player.elo + this.kFactor * (result - expectedResult)
-          )
+          const elo = this.calculatePlayerElo(player, opponentElo, j > i)
 
           eloDiff += elo
         }
@@ -94,6 +47,6 @@ export class FreeForAll implements Match {
       player.elo = Math.floor(eloDiff / (playerIds.length - 1))
     }
 
-    this._completed = true
+    this.completed = true
   }
 }

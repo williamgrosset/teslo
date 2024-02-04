@@ -8,17 +8,6 @@ describe('Duel', () => {
     expect(match).toBeDefined()
   })
 
-  test('adds players to match', () => {
-    const player1 = new Player('1', 1000)
-    const player2 = new Player('2', 900)
-    const match = new Duel()
-
-    match.addPlayer(player1)
-    match.addPlayer(player2)
-
-    expect(match.players.size).toBe(2)
-  })
-
   test('throws error when adding more than 2 players', () => {
     expect(() => {
       const player1 = new Player('1', 1000)
