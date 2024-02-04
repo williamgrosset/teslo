@@ -1,3 +1,3 @@
-export { Player } from './player'
-export { Duel } from './duel'
-export { FreeForAll } from './free-for-all'
+export { Player } from './main/player'
+export { Duel } from './main/duel'
+export { FreeForAll } from './main/free-for-all'

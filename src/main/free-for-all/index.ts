@@ -1,5 +1,5 @@
-import { Match, Options } from '../match'
-import { MatchError, ErrorType } from '../match/error'
+import { Match, Options } from '../../lib/match'
+import { MatchError, ErrorType } from '../../lib/match/error'
 
 export class FreeForAll extends Match {
   constructor(options?: Options) {

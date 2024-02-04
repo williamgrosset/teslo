@@ -1,6 +1,6 @@
 import { Duel } from '.'
 import { Player } from '../player'
-import { ErrorType } from '../match/error'
+import { ErrorType } from '../../lib/match/error'
 
 describe('Duel', () => {
   test('instantiates with empty constructor', () => {

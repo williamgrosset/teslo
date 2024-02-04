@@ -1,4 +1,4 @@
-import { Player } from '../player'
+import { Player } from '../../main/player'
 import { ErrorType, MatchError } from './error'
 
 const DEFAULT_MIN_SIZE = 2
