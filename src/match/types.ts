@@ -1,6 +1,9 @@
 import { Player } from '../player'
 
 export interface Options {
+  minPlayers?: number
+  // TODO Only add support for FFA? Duel should always be 2 players
+  maxPlayers?: number
   kFactor?: number
 }
 
@@ -10,5 +13,7 @@ export interface Match {
   completed: boolean
 
   addPlayer(player: Player): void
-  calculate(playerId: string): void
+
+  // TODO Convert Match to abstract class so we can use function overloading instead
+  calculate(playerId: string | string[]): void
 }
