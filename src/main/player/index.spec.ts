@@ -12,4 +12,16 @@ describe('Player', () => {
     const expectedResult = player.getExpectedResult(900)
     expect(Math.round(expectedResult * 1e2) / 1e2).toBe(0.64)
   })
+
+  test('calculates elo of winning against opponent', () => {
+    const player = new Player('1', 1000)
+    const elo = player.calculate(900, true, 32)
+    expect(elo).toBe(1012)
+  })
+
+  test('calculates elo of losing against opponent', () => {
+    const player = new Player('1', 1000)
+    const elo = player.calculate(900, false, 32)
+    expect(elo).toBe(980)
+  })
 })

@@ -35,7 +35,7 @@ export class Duel extends Match {
         throw new MatchError(ErrorType.MISSING_OPPONENT_ELO)
       }
 
-      const elo = this.calculatePlayerElo(player, opponentElo, playerId === id)
+      const elo = player.calculate(opponentElo, playerId === id, this.kFactor)
 
       player.elo = elo
     }

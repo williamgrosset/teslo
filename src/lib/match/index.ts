@@ -4,10 +4,6 @@ import { ErrorType, MatchError } from './error'
 const DEFAULT_MIN_SIZE = 2
 const DEFAULT_MAX_SIZE = 256
 const DEFAULT_K_FACTOR = 32
-const Result = {
-  LOSS: 0,
-  WIN: 1
-}
 
 export interface Options {
   minPlayers?: number
@@ -19,14 +15,14 @@ export abstract class Match {
   players: Map<string, Player>
   protected readonly minPlayers: number
   protected readonly maxPlayers: number
-  private _kFactor: number
+  protected readonly kFactor: number
   private _completed: boolean
 
   constructor(options?: Options) {
     this.players = new Map()
     this.minPlayers = options?.minPlayers ?? DEFAULT_MIN_SIZE
     this.maxPlayers = options?.maxPlayers ?? DEFAULT_MAX_SIZE
-    this._kFactor = options?.kFactor ?? DEFAULT_K_FACTOR
+    this.kFactor = options?.kFactor ?? DEFAULT_K_FACTOR
     this._completed = false
   }
 
@@ -48,16 +44,6 @@ export abstract class Match {
       players.set(id, player.elo)
     }
     return players
-  }
-
-  protected calculatePlayerElo(
-    player: Player,
-    opponentElo: number,
-    won: boolean
-  ): number {
-    const result = won ? Result.WIN : Result.LOSS
-    const expectedResult = player.getExpectedResult(opponentElo)
-    return Math.round(player.elo + this._kFactor * (result - expectedResult))
   }
 
   addPlayer(player: Player) {
