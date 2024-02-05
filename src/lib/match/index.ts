@@ -15,18 +15,22 @@ const DEFAULT_MIN_SIZE = 2
 const DEFAULT_MAX_SIZE = 256
 
 export abstract class Match {
-  contestants: Map<string, Contestant>
+  private _contestants: Map<string, Contestant>
+  private _completed: boolean
   protected readonly minContestants: number
   protected readonly maxContestants: number
   protected readonly kFactor: number
-  private _completed: boolean
 
   constructor(options?: Options) {
-    this.contestants = new Map()
+    this._contestants = new Map()
+    this._completed = false
     this.minContestants = options?.minContestants ?? DEFAULT_MIN_SIZE
     this.maxContestants = options?.maxContestants ?? DEFAULT_MAX_SIZE
     this.kFactor = options?.kFactor ?? DEFAULT_K_FACTOR
-    this._completed = false
+  }
+
+  get contestants(): Map<string, Contestant> {
+    return this._contestants
   }
 
   get completed(): boolean {
@@ -44,7 +48,7 @@ export abstract class Match {
   protected contestantMapToEloMap(): Map<string, number> {
     const players = new Map<string, number>()
 
-    for (const [id, contestant] of this.contestants) {
+    for (const [id, contestant] of this._contestants) {
       if (contestant instanceof Player) {
         players.set(id, contestant.elo)
       } else if (contestant instanceof Team) {
@@ -60,7 +64,7 @@ export abstract class Match {
       throw new MatchError(ErrorType.MATCH_COMPLETE)
     }
 
-    this.contestants.set(contestant.id, contestant)
+    this._contestants.set(contestant.id, contestant)
   }
 
   abstract calculate(playerId: string | string[]): void
