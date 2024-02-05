@@ -2,7 +2,7 @@ import { Match, Options } from '../../lib/match'
 import { MatchError, ErrorType } from '../../lib/match/error'
 import { Player } from '../player'
 
-type DuelOptions = Partial<Omit<Options, 'maxPlayers'>>
+type DuelOptions = Partial<Pick<Options, 'kFactor'>>
 
 const MIN_PLAYERS = 2
 const MAX_PLAYERS = 2
