@@ -1,18 +1,14 @@
 import { Player } from '../../main/player'
 import { Team } from '../../main/team'
+import {
+  Options,
+  DEFAULT_K_FACTOR,
+  DEFAULT_MIN_CONTESTANTS,
+  DEFAULT_MAX_CONTESTANTS
+} from './options'
 import { ErrorType, MatchError } from './error'
 
-export interface Options {
-  minContestants?: number
-  maxContestants?: number
-  kFactor?: number
-}
-
 type Contestant = Player | Team
-
-const DEFAULT_K_FACTOR = 32
-const DEFAULT_MIN_SIZE = 2
-const DEFAULT_MAX_SIZE = 256
 
 export abstract class Match {
   private _contestants: Map<string, Contestant>
@@ -24,8 +20,8 @@ export abstract class Match {
   constructor(options?: Options) {
     this._contestants = new Map()
     this._completed = false
-    this.minContestants = options?.minContestants ?? DEFAULT_MIN_SIZE
-    this.maxContestants = options?.maxContestants ?? DEFAULT_MAX_SIZE
+    this.minContestants = options?.minContestants ?? DEFAULT_MIN_CONTESTANTS
+    this.maxContestants = options?.maxContestants ?? DEFAULT_MAX_CONTESTANTS
     this.kFactor = options?.kFactor ?? DEFAULT_K_FACTOR
   }
 

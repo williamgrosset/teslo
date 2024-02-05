@@ -1,11 +1,11 @@
 import { Player } from '../player'
 import { Match } from '../../lib/match'
+import { Options } from '../../lib/match/options'
 import { MatchError, ErrorType } from '../../lib/match/error'
 
-interface FreeForAllOptions {
+interface FreeForAllOptions extends Partial<Pick<Options, 'kFactor'>> {
   minPlayers?: number
   maxPlayers?: number
-  kFactor?: number
 }
 
 export class FreeForAll extends Match {

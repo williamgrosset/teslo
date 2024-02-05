@@ -1,5 +1,6 @@
 import { Team } from '../team'
-import { Match, Options } from '../../lib/match'
+import { Match } from '../../lib/match'
+import { Options } from '../../lib/match/options'
 import { MatchError, ErrorType } from '../../lib/match/error'
 
 type TeamDuelOptions = Partial<Pick<Options, 'kFactor'>>
