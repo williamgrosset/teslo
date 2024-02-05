@@ -1,28 +1,30 @@
 import { Player } from '../../main/player'
+import { Team } from '../../main/team'
 import { ErrorType, MatchError } from './error'
 
 export interface Options {
-  minPlayers?: number
-  maxPlayers?: number
+  minContestants?: number
+  maxContestants?: number
   kFactor?: number
 }
 
-export const DEFAULT_K_FACTOR = 32
+type Contestant = Player | Team
 
+const DEFAULT_K_FACTOR = 32
 const DEFAULT_MIN_SIZE = 2
 const DEFAULT_MAX_SIZE = 256
 
 export abstract class Match {
-  players: Map<string, Player>
-  protected readonly minPlayers: number
-  protected readonly maxPlayers: number
+  contestants: Map<string, Contestant>
+  protected readonly minContestants: number
+  protected readonly maxContestants: number
   protected readonly kFactor: number
   private _completed: boolean
 
   constructor(options?: Options) {
-    this.players = new Map()
-    this.minPlayers = options?.minPlayers ?? DEFAULT_MIN_SIZE
-    this.maxPlayers = options?.maxPlayers ?? DEFAULT_MAX_SIZE
+    this.contestants = new Map()
+    this.minContestants = options?.minContestants ?? DEFAULT_MIN_SIZE
+    this.maxContestants = options?.maxContestants ?? DEFAULT_MAX_SIZE
     this.kFactor = options?.kFactor ?? DEFAULT_K_FACTOR
     this._completed = false
   }
@@ -39,24 +41,26 @@ export abstract class Match {
     this._completed = completed
   }
 
-  protected playerMapToEloMap(): Map<string, number> {
+  protected contestantMapToEloMap(): Map<string, number> {
     const players = new Map<string, number>()
-    for (const [id, player] of this.players) {
-      players.set(id, player.elo)
+
+    for (const [id, contestant] of this.contestants) {
+      if (contestant instanceof Player) {
+        players.set(id, contestant.elo)
+      } else if (contestant instanceof Team) {
+        players.set(id, contestant.getAverageElo())
+      }
     }
+
     return players
   }
 
-  addPlayer(player: Player) {
+  addContestant(contestant: Contestant) {
     if (this._completed) {
       throw new MatchError(ErrorType.MATCH_COMPLETE)
     }
 
-    if (this.players.size === this.maxPlayers) {
-      throw new MatchError(ErrorType.MAX_PLAYERS)
-    }
-
-    this.players.set(player.id, player)
+    this.contestants.set(contestant.id, contestant)
   }
 
   abstract calculate(playerId: string | string[]): void

@@ -1,9 +1,28 @@
 import { Match, Options } from '../../lib/match'
 import { MatchError, ErrorType } from '../../lib/match/error'
+import { Player } from '../player'
+
+interface FreeForAllOptions {
+  minPlayers?: number
+  maxPlayers?: number
+  kFactor?: number
+}
 
 export class FreeForAll extends Match {
-  constructor(options?: Options) {
-    super(options)
+  constructor(options?: FreeForAllOptions) {
+    super({
+      ...options,
+      minContestants: options?.minPlayers,
+      maxContestants: options?.maxPlayers
+    })
+  }
+
+  addPlayer(player: Player) {
+    if (this.contestants.size === this.maxContestants) {
+      throw new MatchError(ErrorType.MAX_PLAYERS)
+    }
+
+    this.addContestant(player)
   }
 
   calculate(playerIds: string[]) {
@@ -11,18 +30,18 @@ export class FreeForAll extends Match {
       throw new MatchError(ErrorType.MATCH_COMPLETE)
     }
 
-    if (this.players.size < this.minPlayers) {
+    if (this.contestants.size < this.minContestants) {
       throw new MatchError(ErrorType.MIN_PLAYERS)
     }
 
-    if (this.players.size !== playerIds.length) {
+    if (this.contestants.size !== playerIds.length) {
       throw new MatchError(ErrorType.SIZE_MISMATCH)
     }
 
-    const players = this.playerMapToEloMap()
+    const players = this.contestantMapToEloMap()
 
     for (let i = 0; i < playerIds.length; i++) {
-      const player = this.players.get(playerIds[i])
+      const player = this.contestants.get(playerIds[i]) as Player
 
       if (!player) {
         throw new MatchError(ErrorType.PLAYER_NOT_FOUND)

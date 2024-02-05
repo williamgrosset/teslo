@@ -1,41 +1,15 @@
 import { Team } from '../team'
 import { MatchError, ErrorType } from '../../lib/match/error'
-import { Options, DEFAULT_K_FACTOR } from '../../lib/match'
+import { Match, Options } from '../../lib/match'
 
 type TeamDuelOptions = Partial<Pick<Options, 'kFactor'>>
 
 const MIN_TEAMS = 2
 const MAX_TEAMS = 2
 
-export class TeamDuel {
-  teams: Map<string, Team>
-  protected readonly kFactor: number
-  private _completed: boolean
-
+export class TeamDuel extends Match {
   constructor(options?: TeamDuelOptions) {
-    this.teams = new Map()
-    this.kFactor = options?.kFactor ?? DEFAULT_K_FACTOR
-    this._completed = false
-  }
-
-  get completed(): boolean {
-    return this._completed
-  }
-
-  private set completed(completed: boolean) {
-    if (this._completed) {
-      throw new MatchError(ErrorType.MATCH_COMPLETE)
-    }
-
-    this._completed = completed
-  }
-
-  protected teamMapToEloMap(): Map<string, number> {
-    const teams = new Map<string, number>()
-    for (const [id, team] of this.teams) {
-      teams.set(id, team.getAverageElo())
-    }
-    return teams
+    super({ ...options, minContestants: MIN_TEAMS, maxContestants: MAX_TEAMS })
   }
 
   private findOpponentElo(
@@ -52,25 +26,26 @@ export class TeamDuel {
   }
 
   addTeam(team: Team) {
-    if (this.teams.size === MAX_TEAMS) {
+    if (this.contestants.size === MAX_TEAMS) {
       throw new MatchError(ErrorType.MAX_TEAMS)
     }
 
-    this.teams.set(team.id, team)
+    this.addContestant(team)
   }
 
   calculate(teamId: string) {
-    if (this._completed) {
+    if (this.completed) {
       throw new MatchError(ErrorType.MATCH_COMPLETE)
     }
 
-    if (this.teams.size !== MIN_TEAMS) {
+    if (this.contestants.size !== this.minContestants) {
       throw new MatchError(ErrorType.MIN_TEAMS)
     }
 
-    const teams = this.teamMapToEloMap()
+    const teams = this.contestantMapToEloMap()
 
-    for (const [id, team] of this.teams) {
+    for (const [id, contestant] of this.contestants) {
+      const team = contestant as Team
       const opponentElo = this.findOpponentElo(teams, id)
 
       if (!opponentElo) {
@@ -79,10 +54,11 @@ export class TeamDuel {
 
       for (const [_, player] of team.players) {
         const elo = player.calculate(opponentElo, teamId === id, this.kFactor)
+
         player.elo = elo
       }
     }
 
-    this._completed = true
+    this.completed = true
   }
 }

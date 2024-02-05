@@ -1,11 +1,19 @@
 import { Match, Options } from '../../lib/match'
 import { MatchError, ErrorType } from '../../lib/match/error'
+import { Player } from '../player'
 
 type DuelOptions = Partial<Omit<Options, 'maxPlayers'>>
 
+const MIN_PLAYERS = 2
+const MAX_PLAYERS = 2
+
 export class Duel extends Match {
   constructor(options?: DuelOptions) {
-    super({ ...options, maxPlayers: 2 })
+    super({
+      ...options,
+      minContestants: MIN_PLAYERS,
+      maxContestants: MAX_PLAYERS
+    })
   }
 
   private findOpponentElo(
@@ -21,14 +29,23 @@ export class Duel extends Match {
     return undefined
   }
 
+  addPlayer(player: Player) {
+    if (this.contestants.size === MAX_PLAYERS) {
+      throw new MatchError(ErrorType.MAX_PLAYERS)
+    }
+
+    this.addContestant(player)
+  }
+
   calculate(playerId: string) {
     if (this.completed) {
       throw new MatchError(ErrorType.MATCH_COMPLETE)
     }
 
-    const players = this.playerMapToEloMap()
+    const players = this.contestantMapToEloMap()
 
-    for (const [id, player] of this.players) {
+    for (const [id, contestant] of this.contestants) {
+      const player = contestant as Player
       const opponentElo = this.findOpponentElo(players, id)
 
       if (!opponentElo) {

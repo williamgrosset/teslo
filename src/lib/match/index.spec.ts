@@ -10,14 +10,14 @@ class TestMatch extends Match {
 }
 
 describe('Match', () => {
-  test('adds players to match', () => {
+  test('adds contestants to match', () => {
     const player1 = new Player('1', 1000)
     const player2 = new Player('2', 900)
     const match = new TestMatch()
 
-    match.addPlayer(player1)
-    match.addPlayer(player2)
+    match.addContestant(player1)
+    match.addContestant(player2)
 
-    expect(match.players.size).toBe(2)
+    expect(match.contestants.size).toBe(2)
   })
 })
