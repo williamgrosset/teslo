@@ -1,6 +1,6 @@
 import { Team } from '../team'
-import { MatchError, ErrorType } from '../../lib/match/error'
 import { Match, Options } from '../../lib/match'
+import { MatchError, ErrorType } from '../../lib/match/error'
 
 type TeamDuelOptions = Partial<Pick<Options, 'kFactor'>>
 
@@ -38,7 +38,7 @@ export class TeamDuel extends Match {
       throw new MatchError(ErrorType.MATCH_COMPLETE)
     }
 
-    if (this.contestants.size !== this.minContestants) {
+    if (this.contestants.size !== MIN_TEAMS) {
       throw new MatchError(ErrorType.MIN_TEAMS)
     }
 
