@@ -1,15 +1,16 @@
 import { Player } from '../../main/player'
 import { ErrorType, MatchError } from './error'
 
-const DEFAULT_MIN_SIZE = 2
-const DEFAULT_MAX_SIZE = 256
-const DEFAULT_K_FACTOR = 32
-
 export interface Options {
   minPlayers?: number
   maxPlayers?: number
   kFactor?: number
 }
+
+export const DEFAULT_K_FACTOR = 32
+
+const DEFAULT_MIN_SIZE = 2
+const DEFAULT_MAX_SIZE = 256
 
 export abstract class Match {
   players: Map<string, Player>
