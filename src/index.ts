@@ -1,5 +1,5 @@
 export { Player } from './main/player'
-export { Team } from './main/team'
 export { Duel } from './main/duel'
 export { FreeForAll } from './main/free-for-all'
+export { Team } from './main/team'
 export { TeamDuel } from './main/team-duel'

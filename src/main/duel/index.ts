@@ -1,6 +1,6 @@
+import { Player } from '../player'
 import { Match, Options } from '../../lib/match'
 import { MatchError, ErrorType } from '../../lib/match/error'
-import { Player } from '../player'
 
 type DuelOptions = Partial<Pick<Options, 'kFactor'>>
 

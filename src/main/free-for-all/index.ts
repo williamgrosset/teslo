@@ -1,6 +1,6 @@
+import { Player } from '../player'
 import { Match } from '../../lib/match'
 import { MatchError, ErrorType } from '../../lib/match/error'
-import { Player } from '../player'
 
 interface FreeForAllOptions {
   minPlayers?: number
