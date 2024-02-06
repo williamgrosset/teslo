@@ -6,7 +6,9 @@ class TestMatch extends Match {
     super()
   }
 
-  calculate(playerId: string) {}
+  calculate(playerId: string) {
+    return []
+  }
 }
 
 describe('Match', () => {

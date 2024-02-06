@@ -1,6 +1,7 @@
 import { Player } from '../../contestants/player'
 import { Match } from '../../../lib/match'
 import { Options } from '../../../lib/match/options'
+import { Results } from '../../../lib/match/results'
 import { MatchError, ErrorType } from '../../../lib/match/error'
 
 interface FreeForAllOptions extends Partial<Pick<Options, 'kFactor'>> {
@@ -25,7 +26,7 @@ export class FreeForAll extends Match {
     this.addContestant(player)
   }
 
-  calculate(playerIds: string[]) {
+  calculate(playerIds: string[]): Results {
     if (this.completed) {
       throw new MatchError(ErrorType.MATCH_COMPLETE)
     }
@@ -67,5 +68,7 @@ export class FreeForAll extends Match {
     }
 
     this.completed = true
+
+    return this.contestantMapToResults()
   }
 }

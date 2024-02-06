@@ -1,6 +1,7 @@
 import { Team } from '../../contestants/team'
 import { Match } from '../../../lib/match'
 import { Options } from '../../../lib/match/options'
+import { Results } from '../../../lib/match/results'
 import { MatchError, ErrorType } from '../../../lib/match/error'
 
 type TeamDuelOptions = Partial<Pick<Options, 'kFactor'>>
@@ -21,7 +22,7 @@ export class TeamDuel extends Match {
     this.addContestant(team)
   }
 
-  calculate(teamId: string) {
+  calculate(teamId: string): Results {
     if (this.completed) {
       throw new MatchError(ErrorType.MATCH_COMPLETE)
     }
@@ -48,5 +49,7 @@ export class TeamDuel extends Match {
     }
 
     this.completed = true
+
+    return this.contestantMapToResults()
   }
 }

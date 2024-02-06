@@ -1,6 +1,7 @@
 import { Player } from '../../contestants/player'
 import { Match } from '../../../lib/match'
 import { Options } from '../../../lib/match/options'
+import { Results } from '../../../lib/match/results'
 import { MatchError, ErrorType } from '../../../lib/match/error'
 
 type DuelOptions = Partial<Pick<Options, 'kFactor'>>
@@ -25,7 +26,7 @@ export class Duel extends Match {
     this.addContestant(player)
   }
 
-  calculate(playerId: string) {
+  calculate(playerId: string): Results {
     if (this.completed) {
       throw new MatchError(ErrorType.MATCH_COMPLETE)
     }
@@ -46,5 +47,7 @@ export class Duel extends Match {
     }
 
     this.completed = true
+
+    return this.contestantMapToResults()
   }
 }

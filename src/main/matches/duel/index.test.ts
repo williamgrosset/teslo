@@ -28,10 +28,19 @@ describe('Duel', () => {
 
     match.addPlayer(player1)
     match.addPlayer(player2)
-    match.calculate('1')
 
-    expect(player1.elo).toBe(1012)
-    expect(player2.elo).toBe(888)
+    const results = match.calculate('1')
+
+    expect(results).toStrictEqual([
+      {
+        id: '1',
+        elo: 1012
+      },
+      {
+        id: '2',
+        elo: 888
+      }
+    ])
   })
 
   test('calculates elo for player 2 win', () => {
@@ -41,10 +50,19 @@ describe('Duel', () => {
 
     match.addPlayer(player1)
     match.addPlayer(player2)
-    match.calculate('2')
 
-    expect(player1.elo).toBe(980)
-    expect(player2.elo).toBe(920)
+    const results = match.calculate('2')
+
+    expect(results).toStrictEqual([
+      {
+        id: '1',
+        elo: 980
+      },
+      {
+        id: '2',
+        elo: 920
+      }
+    ])
   })
 
   test('sets match completion after calculation', () => {

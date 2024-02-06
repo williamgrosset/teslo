@@ -15,10 +15,19 @@ describe('FreeForAll', () => {
 
     match.addPlayer(player1)
     match.addPlayer(player2)
-    match.calculate(['1', '2'])
 
-    expect(player1.elo).toBe(1012)
-    expect(player2.elo).toBe(888)
+    const results = match.calculate(['1', '2'])
+
+    expect(results).toStrictEqual([
+      {
+        id: '1',
+        elo: 1012
+      },
+      {
+        id: '2',
+        elo: 888
+      }
+    ])
   })
 
   test('calculates elo for player 2 win with 2 players', () => {
@@ -28,10 +37,19 @@ describe('FreeForAll', () => {
 
     match.addPlayer(player1)
     match.addPlayer(player2)
-    match.calculate(['2', '1'])
 
-    expect(player1.elo).toBe(980)
-    expect(player2.elo).toBe(920)
+    const results = match.calculate(['2', '1'])
+
+    expect(results).toStrictEqual([
+      {
+        id: '1',
+        elo: 980
+      },
+      {
+        id: '2',
+        elo: 920
+      }
+    ])
   })
 
   test('calculates elo for player 1 win with 3 players', () => {
@@ -43,11 +61,23 @@ describe('FreeForAll', () => {
     match.addPlayer(player1)
     match.addPlayer(player2)
     match.addPlayer(player3)
-    match.calculate(['1', '2', '3'])
 
-    expect(player1.elo).toBe(1010)
-    expect(player2.elo).toBe(900)
-    expect(player3.elo).toBe(790)
+    const results = match.calculate(['1', '2', '3'])
+
+    expect(results).toStrictEqual([
+      {
+        id: '1',
+        elo: 1010
+      },
+      {
+        id: '2',
+        elo: 900
+      },
+      {
+        id: '3',
+        elo: 790
+      }
+    ])
   })
 
   test('calculates elo for player 2 win with 3 players', () => {
@@ -59,11 +89,23 @@ describe('FreeForAll', () => {
     match.addPlayer(player1)
     match.addPlayer(player2)
     match.addPlayer(player3)
-    match.calculate(['2', '3', '1'])
 
-    expect(player1.elo).toBe(978)
-    expect(player2.elo).toBe(916)
-    expect(player3.elo).toBe(806)
+    const results = match.calculate(['2', '3', '1'])
+
+    expect(results).toStrictEqual([
+      {
+        id: '1',
+        elo: 978
+      },
+      {
+        id: '2',
+        elo: 916
+      },
+      {
+        id: '3',
+        elo: 806
+      }
+    ])
   })
 
   test('calculates elo for player 3 win with 3 players', () => {
@@ -75,11 +117,23 @@ describe('FreeForAll', () => {
     match.addPlayer(player1)
     match.addPlayer(player2)
     match.addPlayer(player3)
-    match.calculate(['3', '2', '1'])
 
-    expect(player1.elo).toBe(978)
-    expect(player2.elo).toBe(900)
-    expect(player3.elo).toBe(822)
+    const results = match.calculate(['3', '2', '1'])
+
+    expect(results).toStrictEqual([
+      {
+        id: '1',
+        elo: 978
+      },
+      {
+        id: '2',
+        elo: 900
+      },
+      {
+        id: '3',
+        elo: 822
+      }
+    ])
   })
 
   test('calculates elo for player 1 win with 100 players', () => {

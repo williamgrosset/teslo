@@ -37,27 +37,67 @@ describe('TeamDuel', () => {
   })
 
   test('calculates elo for team 1 winning', () => {
-    match.calculate('1')
-
-    const team1 = match.contestants.get('1')! as Team
-    const team2 = match.contestants.get('2')! as Team
-
-    expect(team1.players.get('1')!.elo).toBe(1006)
-    expect(team1.players.get('2')!.elo).toBe(909)
-    expect(team2.players.get('3')!.elo).toBe(791)
-    expect(team2.players.get('4')!.elo).toBe(694)
+    const results = match.calculate('1')
+    expect(results).toStrictEqual([
+      {
+        id: '1',
+        players: [
+          {
+            id: '1',
+            elo: 1006
+          },
+          {
+            id: '2',
+            elo: 909
+          }
+        ]
+      },
+      {
+        id: '2',
+        players: [
+          {
+            id: '3',
+            elo: 791
+          },
+          {
+            id: '4',
+            elo: 694
+          }
+        ]
+      }
+    ])
   })
 
   test('calculates elo for team 2 winning', () => {
-    match.calculate('2')
-
-    const team1 = match.contestants.get('1')! as Team
-    const team2 = match.contestants.get('2')! as Team
-
-    expect(team1.players.get('1')!.elo).toBe(974)
-    expect(team1.players.get('2')!.elo).toBe(877)
-    expect(team2.players.get('3')!.elo).toBe(823)
-    expect(team2.players.get('4')!.elo).toBe(726)
+    const results = match.calculate('2')
+    expect(results).toStrictEqual([
+      {
+        id: '1',
+        players: [
+          {
+            id: '1',
+            elo: 974
+          },
+          {
+            id: '2',
+            elo: 877
+          }
+        ]
+      },
+      {
+        id: '2',
+        players: [
+          {
+            id: '3',
+            elo: 823
+          },
+          {
+            id: '4',
+            elo: 726
+          }
+        ]
+      }
+    ])
   })
 
   test('throws error when calculating without 2 teams', () => {

@@ -6,6 +6,7 @@ import {
   DEFAULT_MIN_CONTESTANTS,
   DEFAULT_MAX_CONTESTANTS
 } from './options'
+import { Results } from './results'
 import { ErrorType, MatchError } from './error'
 
 type Contestant = Player | Team
@@ -42,17 +43,39 @@ export abstract class Match {
   }
 
   protected contestantMapToEloMap(): Map<string, number> {
-    const players = new Map<string, number>()
+    const elos = new Map<string, number>()
 
     for (const [id, contestant] of this._contestants) {
       if (contestant instanceof Player) {
-        players.set(id, contestant.elo)
+        elos.set(id, contestant.elo)
       } else if (contestant instanceof Team) {
-        players.set(id, contestant.getAverageElo())
+        elos.set(id, contestant.getAverageElo())
       }
     }
 
-    return players
+    return elos
+  }
+
+  protected contestantMapToResults(): Results {
+    const results = []
+
+    for (const [id, contestant] of this._contestants) {
+      if (contestant instanceof Player) {
+        const player = { id, elo: contestant.elo }
+        results.push(player)
+      } else if (contestant instanceof Team) {
+        const team = {
+          id,
+          players: [...contestant.players.values()].map(player => ({
+            id: player.id,
+            elo: player.elo
+          }))
+        }
+        results.push(team)
+      }
+    }
+
+    return results as Results
   }
 
   protected findOpponentElos(
@@ -78,5 +101,5 @@ export abstract class Match {
     this._contestants.set(contestant.id, contestant)
   }
 
-  abstract calculate(contestantIds: string | string[]): void
+  abstract calculate(contestantIds: string | string[]): Results
 }
