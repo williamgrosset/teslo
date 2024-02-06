@@ -1,7 +1,7 @@
 import { TeamDuel } from '.'
-import { Player } from '../player'
-import { Team } from '../team'
-import { ErrorType } from '../../lib/match/error'
+import { Player } from '../../contestants/player'
+import { Team } from '../../contestants/team'
+import { ErrorType } from '../../../lib/match/error'
 
 describe('TeamDuel', () => {
   let match: TeamDuel

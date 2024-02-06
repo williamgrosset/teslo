@@ -1,5 +1,5 @@
 import { Match } from '.'
-import { Player } from '../../main/player'
+import { Player } from '../../main/contestants/player'
 
 class TestMatch extends Match {
   constructor() {

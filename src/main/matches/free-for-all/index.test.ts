@@ -1,6 +1,6 @@
 import { FreeForAll } from '.'
-import { Player } from '../player'
-import { ErrorType } from '../../lib/match/error'
+import { Player } from '../../contestants/player'
+import { ErrorType } from '../../../lib/match/error'
 
 describe('FreeForAll', () => {
   test('instantiates with empty constructor', () => {

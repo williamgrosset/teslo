@@ -1,5 +1,5 @@
-import { Player } from '../../main/player'
-import { Team } from '../../main/team'
+import { Player } from '../../main/contestants/player'
+import { Team } from '../../main/contestants/team'
 import {
   Options,
   DEFAULT_K_FACTOR,
