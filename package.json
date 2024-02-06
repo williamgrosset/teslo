@@ -9,10 +9,14 @@
     "url": "https://github.com/williamgrosset/teslo"
   },
   "keywords": [
+    "typescript",
     "elo",
     "rating",
+    "elo-rating",
+    "elo rating",
     "calculator",
     "multiplayer",
+    "games",
     "chess"
   ],
   "files": [
