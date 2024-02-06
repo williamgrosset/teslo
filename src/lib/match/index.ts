@@ -55,6 +55,21 @@ export abstract class Match {
     return players
   }
 
+  protected findOpponentElos(
+    contestantId: string,
+    contestants: Map<string, number>
+  ): number[] {
+    const elos: number[] = []
+
+    for (const [id, elo] of contestants) {
+      if (id !== contestantId) {
+        elos.push(elo)
+      }
+    }
+
+    return elos
+  }
+
   addContestant(contestant: Contestant) {
     if (this._completed) {
       throw new MatchError(ErrorType.MATCH_COMPLETE)

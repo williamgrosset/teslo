@@ -13,19 +13,6 @@ export class TeamDuel extends Match {
     super({ ...options, minContestants: MIN_TEAMS, maxContestants: MAX_TEAMS })
   }
 
-  private findOpponentElo(
-    teams: Map<string, number>,
-    playerId: string
-  ): number | undefined {
-    // Assume only 2 entries for a team match
-    for (const [id, elo] of teams) {
-      if (id !== playerId) {
-        return elo
-      }
-    }
-    return undefined
-  }
-
   addTeam(team: Team) {
     if (this.contestants.size === MAX_TEAMS) {
       throw new MatchError(ErrorType.MAX_TEAMS)
@@ -47,14 +34,14 @@ export class TeamDuel extends Match {
 
     for (const [id, contestant] of this.contestants) {
       const team = contestant as Team
-      const opponentElo = this.findOpponentElo(teams, id)
+      const elos = this.findOpponentElos(id, teams)
 
-      if (!opponentElo) {
+      if (elos.length === 0) {
         throw new MatchError(ErrorType.MISSING_OPPONENT_ELO)
       }
 
       for (const [_, player] of team.players) {
-        const elo = player.calculate(opponentElo, teamId === id, this.kFactor)
+        const elo = player.calculate(elos[0], teamId === id, this.kFactor)
 
         player.elo = elo
       }

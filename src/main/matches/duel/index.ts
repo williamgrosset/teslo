@@ -17,19 +17,6 @@ export class Duel extends Match {
     })
   }
 
-  private findOpponentElo(
-    players: Map<string, number>,
-    playerId: string
-  ): number | undefined {
-    // Assume only 2 entries for a duel match
-    for (const [id, elo] of players) {
-      if (id !== playerId) {
-        return elo
-      }
-    }
-    return undefined
-  }
-
   addPlayer(player: Player) {
     if (this.contestants.size === MAX_PLAYERS) {
       throw new MatchError(ErrorType.MAX_PLAYERS)
@@ -47,13 +34,13 @@ export class Duel extends Match {
 
     for (const [id, contestant] of this.contestants) {
       const player = contestant as Player
-      const opponentElo = this.findOpponentElo(players, id)
+      const elos = this.findOpponentElos(id, players)
 
-      if (!opponentElo) {
+      if (elos.length === 0) {
         throw new MatchError(ErrorType.MISSING_OPPONENT_ELO)
       }
 
-      const elo = player.calculate(opponentElo, playerId === id, this.kFactor)
+      const elo = player.calculate(elos[0], playerId === id, this.kFactor)
 
       player.elo = elo
     }
