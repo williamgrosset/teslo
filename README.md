@@ -2,7 +2,7 @@
 
 ![Build status](https://img.shields.io/github/actions/workflow/status/williamgrosset/teslo/test.yml)
 
-Calculate elo rating in multiplayer games.
+Teslo is a TypeScript package for calculating elo rating in multiplayer games.
 
 > Supports duels, free-for-alls, and team matches. Compatible with Node.js and browser environments.
 
@@ -255,9 +255,7 @@ Once we have the expected result of a player against their opponent, we can calc
 New Elo = Old Elo + KFactor * (Result - Expected Result)
 ```
 
-In duels, elo calculation is straightforward as one player wins and the other loses. In team matches, each player's elo is calculated based on the average elo of the opposing team.
-
-In free-for-alls, elo is calculated by player placement. Players lose elo to those who placed higher and gain elo from those who placed lower.
+In a duel, elo calculation is straightforward as one player wins and the other loses. In a free-for-all, elo is calculated by player placement. Players lose elo to those who placed higher and gain elo from those who placed lower. In a team match, each player's elo is calculated based on the average elo of the opposing team(s).
 
 You can learn more about the elo rating system via the [Wiki](https://en.wikipedia.org/wiki/Elo_rating_system).
 
