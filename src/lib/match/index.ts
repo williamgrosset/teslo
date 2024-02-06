@@ -78,5 +78,5 @@ export abstract class Match {
     this._contestants.set(contestant.id, contestant)
   }
 
-  abstract calculate(playerId: string | string[]): void
+  abstract calculate(contestantIds: string | string[]): void
 }
