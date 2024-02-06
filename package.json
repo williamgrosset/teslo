@@ -1,20 +1,32 @@
 {
   "name": "teslo",
   "version": "0.0.0",
-  "description": "Elo rating system",
+  "description": "Elo rating calculator",
   "author": "William Grosset",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/williamgrosset/teslo"
   },
+  "keywords": [
+    "elo",
+    "rating",
+    "calculator",
+    "multiplayer",
+    "chess"
+  ],
+  "files": [
+    "dist"
+  ],
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rollup --config",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf ./dist",
     "start": "node dist/index.js",
-    "test": "jest"
+    "test": "jest",
+    "prepublish": "pnpm clean && pnpm build"
   },
   "devDependencies": {
     "@rollup/plugin-terser": "^0.4.4",
