@@ -2,9 +2,9 @@
 
 ![Build status](https://img.shields.io/github/actions/workflow/status/williamgrosset/teslo/test.yml)
 
-Elo rating calculator compatible with both Node.js and browser environments.
+Calculate elo rating in multiplayer games.
 
-> Calculate elo rating in multiplayer games. Supports duels, free-for-alls, and team matches.
+> Supports duels, free-for-alls, and team matches. Compatible with Node.js and browser environments.
 
 ### Table of Contents
 
@@ -24,7 +24,7 @@ Elo rating calculator compatible with both Node.js and browser environments.
 
 ## Install
 
-Install the `teslo` package:
+Install the `teslo` package.
 
 ```sh
 # npm
@@ -153,7 +153,7 @@ const results = match.calculate('1')
 #### Constructor
 
 ```ts
-Player(id: number, elo: number)
+new Player(id: number, elo: number)
 ```
 
 ### `Team`
@@ -161,7 +161,7 @@ Player(id: number, elo: number)
 #### Constructor
 
 ```ts
-Team(id: number)
+new Team(id: number)
 ```
 
 #### Methods
@@ -179,7 +179,7 @@ interface Options {
   kFactor?: number
 }
 
-Duel(options?: Options)
+new Duel(options?: Options)
 ```
 
 #### Methods
@@ -204,7 +204,7 @@ interface Options {
   maxPlayers?: number
 }
 
-FreeForAll(options?: Options)
+new FreeForAll(options?: Options)
 ```
 
 #### Methods
@@ -227,7 +227,7 @@ interface Options {
   kFactor?: number
 }
 
-TeamDuel(options?: Options)
+new TeamDuel(options?: Options)
 ```
 
 #### Methods
@@ -255,9 +255,9 @@ Once we have the expected result of a player against their opponent, we can calc
 New Elo = Old Elo + KFactor * (Result - Expected Result)
 ```
 
-In **duels**, elo calculation is straightforward as one player wins and the other loses. In team matches, each player's elo is calculated based on the average elo of the opposing team.
+In duels, elo calculation is straightforward as one player wins and the other loses. In team matches, each player's elo is calculated based on the average elo of the opposing team.
 
-In **free-for-alls**, elo is calculated by player placement. Players lose elo to those who placed higher and gain elo from those who placed lower.
+In free-for-alls, elo is calculated by player placement. Players lose elo to those who placed higher and gain elo from those who placed lower.
 
 You can learn more about the elo rating system via the [Wiki](https://en.wikipedia.org/wiki/Elo_rating_system).
 
