@@ -153,7 +153,7 @@ const results = match.calculate('1')
 #### Constructor
 
 ```ts
-new Player(id: number, elo: number)
+new Player(id: string, elo: number)
 ```
 
 ### `Team`
@@ -161,7 +161,7 @@ new Player(id: number, elo: number)
 #### Constructor
 
 ```ts
-new Team(id: number)
+new Team(id: string)
 ```
 
 #### Methods
@@ -191,7 +191,7 @@ calculate(playerId: string): Results
 
 #### Description
 
-A duel is between 2 players. `playerId` decides the winner.
+A duel is between 2 players. `playerId` determines the winner.
 
 ### `FreeForAll`
 
@@ -216,7 +216,7 @@ calculate(playerIds: string[]): Results
 
 #### Description
 
-A free for all match is between 2 or more players. `playerIds` decides the ordering of winners.
+A free-for-all match is between `minPlayers` and `maxPlayers`. `playerIds` determines the winning order.
 
 ### `TeamDuel`
 
@@ -239,7 +239,7 @@ calculate(teamId: string): Results
 
 #### Description
 
-A team duel is between 2 teams. `teamId` decides the winner.
+A team duel is between 2 teams. `teamId` determines the winner.
 
 ## Elo Calculation
 
