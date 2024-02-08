@@ -143,12 +143,15 @@ describe('FreeForAll', () => {
       match.addPlayer(new Player(i.toString(), 1000))
     }
 
-    match.calculate(Array.from({ length: 100 }, (_, i) => (i + 1).toString()))
+    const results = match.calculate(
+      Array.from({ length: 100 }, (_, i) => (i + 1).toString())
+    )
 
-    expect((match.contestants.get('1')! as Player).elo).toBe(1016)
-    expect((match.contestants.get('50')! as Player).elo).toBe(1000)
-    expect((match.contestants.get('55')! as Player).elo).toBe(998)
-    expect((match.contestants.get('100')! as Player).elo).toBe(984)
+    expect((results[0] as Player).elo).toBe(1016)
+    expect((results[9] as Player).elo).toBe(1013)
+    expect((results[49] as Player).elo).toBe(1000)
+    expect((results[54] as Player).elo).toBe(998)
+    expect((results[99] as Player).elo).toBe(984)
   })
 
   test('throws error if trying to calculate when min players for match has not been reached', () => {
