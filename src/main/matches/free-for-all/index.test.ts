@@ -147,11 +147,11 @@ describe('FreeForAll', () => {
       Array.from({ length: 100 }, (_, i) => (i + 1).toString())
     )
 
-    expect((results[0] as Player).elo).toBe(1016)
-    expect((results[9] as Player).elo).toBe(1013)
-    expect((results[49] as Player).elo).toBe(1000)
-    expect((results[54] as Player).elo).toBe(998)
-    expect((results[99] as Player).elo).toBe(984)
+    expect(results[0].elo).toBe(1016)
+    expect(results[9].elo).toBe(1013)
+    expect(results[49].elo).toBe(1000)
+    expect(results[54].elo).toBe(998)
+    expect(results[99].elo).toBe(984)
   })
 
   test('throws error if trying to calculate when min players for match has not been reached', () => {

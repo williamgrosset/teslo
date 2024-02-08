@@ -1,9 +1,9 @@
-interface PlayerResult {
+export interface PlayerResult {
   id: string
   elo: number
 }
 
-interface TeamResult {
+export interface TeamResult {
   id: string
   players: PlayerResult[]
 }

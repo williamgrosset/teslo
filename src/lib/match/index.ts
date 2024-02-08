@@ -56,7 +56,7 @@ export abstract class Match {
     return elos
   }
 
-  protected contestantMapToResults(): Results {
+  protected contestantMapToResults<T extends Results>(): T {
     const results = []
 
     for (const [id, contestant] of this._contestants) {
@@ -75,7 +75,7 @@ export abstract class Match {
       }
     }
 
-    return results as Results
+    return results as T
   }
 
   protected findOpponentElos(
