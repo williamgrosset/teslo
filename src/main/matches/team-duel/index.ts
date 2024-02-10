@@ -1,21 +1,22 @@
 import { Team } from '../../contestants/team'
 import { Match } from '../../../lib/match'
-import { Options } from '../../../lib/match/options'
+import { Options, DUEL_SIZE } from '../../../lib/match/options'
 import { TeamResult } from '../../../lib/match/results'
 import { MatchError, ErrorType } from '../../../lib/match/error'
 
 type TeamDuelOptions = Partial<Pick<Options, 'kFactor'>>
 
-const MIN_TEAMS = 2
-const MAX_TEAMS = 2
-
 export class TeamDuel extends Match {
   constructor(options?: TeamDuelOptions) {
-    super({ ...options, minContestants: MIN_TEAMS, maxContestants: MAX_TEAMS })
+    super({
+      ...options,
+      minContestants: DUEL_SIZE,
+      maxContestants: DUEL_SIZE
+    })
   }
 
   addTeam(team: Team) {
-    if (this.contestants.size === MAX_TEAMS) {
+    if (this.contestants.size === DUEL_SIZE) {
       throw new MatchError(ErrorType.MAX_TEAMS)
     }
 
@@ -27,7 +28,7 @@ export class TeamDuel extends Match {
       throw new MatchError(ErrorType.MATCH_COMPLETE)
     }
 
-    if (this.contestants.size !== MIN_TEAMS) {
+    if (this.contestants.size !== DUEL_SIZE) {
       throw new MatchError(ErrorType.MIN_TEAMS)
     }
 

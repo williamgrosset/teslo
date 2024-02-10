@@ -1,25 +1,22 @@
 import { Player } from '../../contestants/player'
 import { Match } from '../../../lib/match'
-import { Options } from '../../../lib/match/options'
+import { Options, DUEL_SIZE } from '../../../lib/match/options'
 import { PlayerResult } from '../../../lib/match/results'
 import { MatchError, ErrorType } from '../../../lib/match/error'
 
 type DuelOptions = Partial<Pick<Options, 'kFactor'>>
 
-const MIN_PLAYERS = 2
-const MAX_PLAYERS = 2
-
 export class Duel extends Match {
   constructor(options?: DuelOptions) {
     super({
       ...options,
-      minContestants: MIN_PLAYERS,
-      maxContestants: MAX_PLAYERS
+      minContestants: DUEL_SIZE,
+      maxContestants: DUEL_SIZE
     })
   }
 
   addPlayer(player: Player) {
-    if (this.contestants.size === MAX_PLAYERS) {
+    if (this.contestants.size === DUEL_SIZE) {
       throw new MatchError(ErrorType.MAX_PLAYERS)
     }
 
@@ -31,7 +28,7 @@ export class Duel extends Match {
       throw new MatchError(ErrorType.MATCH_COMPLETE)
     }
 
-    if (this.contestants.size !== MIN_PLAYERS) {
+    if (this.contestants.size !== DUEL_SIZE) {
       throw new MatchError(ErrorType.MIN_PLAYERS)
     }
 

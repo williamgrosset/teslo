@@ -4,6 +4,7 @@ export interface Options {
   kFactor?: number
 }
 
-export const DEFAULT_K_FACTOR = 32
+export const DUEL_SIZE = 2
 export const DEFAULT_MIN_CONTESTANTS = 2
 export const DEFAULT_MAX_CONTESTANTS = 256
+export const DEFAULT_K_FACTOR = 32
