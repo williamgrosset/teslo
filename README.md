@@ -186,8 +186,8 @@ new Duel(options?: Options)
 
 ```ts
 addPlayer(player: Player): void
-calculate(playerId: string): Results
-getResults(): Results
+calculate(playerId: string): PlayerResult[]
+getResults(): PlayerResult[]
 ```
 
 #### Description
@@ -212,8 +212,8 @@ new FreeForAll(options?: Options)
 
 ```ts
 addPlayer(player: Player): void
-calculate(playerIds: string[]): Results
-getResults(): Results
+calculate(playerIds: string[]): PlayerResult[]
+getResults(): PlayerResult[]
 ```
 
 #### Description
@@ -236,8 +236,8 @@ new TeamDuel(options?: Options)
 
 ```ts
 addTeam(team: Team): void
-calculate(teamId: string): Results
-getResults(): Results
+calculate(teamId: string): TeamResult[]
+getResults(): TeamResult[]
 ```
 
 #### Description
