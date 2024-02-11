@@ -4,6 +4,7 @@ const ERROR_NAME = 'MATCH_ERROR'
 
 export const ErrorType = {
   MATCH_COMPLETE: 'Match completed',
+  MATCH_INCOMPLETE: 'Match incomplete',
   MAX_PLAYERS: 'Cannot add more players',
   MIN_PLAYERS: 'Need more players',
   MAX_TEAMS: 'Cannot add more teams',

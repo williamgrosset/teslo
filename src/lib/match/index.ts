@@ -93,6 +93,14 @@ export abstract class Match {
     return elos
   }
 
+  getResults(): Results {
+    if (!this._completed) {
+      throw new MatchError(ErrorType.MATCH_INCOMPLETE)
+    }
+
+    return this.contestantMapToResults()
+  }
+
   addContestant(contestant: Contestant) {
     if (this._completed) {
       throw new MatchError(ErrorType.MATCH_COMPLETE)
