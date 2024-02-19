@@ -4,7 +4,7 @@
 
 Teslo is a TypeScript package for calculating elo rating in multiplayer games.
 
-> Supports duels, free-for-alls, and team matches. Compatible with Node.js and browser environments.
+> Supports duels, free-for-alls, and team matches. Compatible with both Node.js and browser environments.
 
 ### Table of Contents
 
@@ -13,12 +13,14 @@ Teslo is a TypeScript package for calculating elo rating in multiplayer games.
   - [Duel](#duel)
   - [Free-For-All](#free-for-all)
   - [Team Duel](#team-duel)
+  - [Team Free-For-All](#team-free-for-all)
 - [API](#api)
   - [`Player`](#player)
   - [`Team`](#team)
   - [`Duel`](#duel-1)
   - [`FreeForAll`](#freeforall)
   - [`TeamDuel`](#teamduel)
+  - [`TeamFreeForAll`](#teamfreeforall)
 - [Elo Calculation](#elo-calculation)
 - [Development](#development)
 
@@ -146,6 +148,73 @@ const results = match.calculate('1')
 */
 ```
 
+### Team Free-For-All
+
+```ts
+import { Player, Team, TeamFreeForAll } from 'teslo'
+
+const match = new TeamFreeForAll()
+const team1 = new Team('1')
+const team2 = new Team('2')
+const team3 = new Team('3')
+
+team1.addPlayer(new Player('1', 1000))
+team1.addPlayer(new Player('2', 900))
+team2.addPlayer(new Player('3', 800))
+team2.addPlayer(new Player('4', 700))
+team3.addPlayer(new Player('5', 600))
+team3.addPlayer(new Player('6', 500))
+match.addTeam(team1)
+match.addTeam(team2)
+match.addTeam(team3)
+
+const results = match.calculate(['1', '2', '3'])
+
+/*
+  [
+    {
+      id: '1',
+      players: [
+        {
+          id: '1',
+          elo: 1004
+        },
+        {
+          id: '2',
+          elo: 906
+        }
+      ]
+    },
+    {
+      id: '2',
+      players: [
+        {
+          id: '3',
+          elo: 798
+        },
+        {
+          id: '4',
+          elo: 701
+        }
+      ]
+    },
+    {
+      id: '3',
+      players: [
+        {
+          id: '5',
+          elo: 593
+        },
+        {
+          id: '6',
+          elo: 496
+        }
+      ]
+    }
+  ]
+*/
+```
+
 ## API
 
 ### `Player`
@@ -218,7 +287,7 @@ getResults(): PlayerResult[]
 
 #### Description
 
-A free-for-all match is between `minPlayers` and `maxPlayers`. `playerIds` determines the winning order.
+A free-for-all is between `minPlayers` and `maxPlayers`. `playerIds` determines the winning order.
 
 ### `TeamDuel`
 
@@ -243,6 +312,32 @@ getResults(): TeamResult[]
 #### Description
 
 A team duel is between 2 teams. `teamId` determines the winner.
+
+### `TeamFreeForAll`
+
+#### Constructor
+
+```ts
+interface Options {
+  kFactor?: number
+  minTeams?: number
+  maxTeams?: number
+}
+
+new TeamFreeForAll(options?: Options)
+```
+
+#### Methods
+
+```ts
+addTeam(team: Team): void
+calculate(teamIds: string[]): TeamResult[]
+getResults(): TeamResult[]
+```
+
+#### Description
+
+A team free-for-all is between `minTeams` and `maxTeams`. `teamIds` determines the winning order.
 
 ## Elo Calculation
 
