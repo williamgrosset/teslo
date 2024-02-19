@@ -58,9 +58,7 @@ export class FreeForAll extends Match {
             throw new MatchError(ErrorType.MISSING_OPPONENT_ELO)
           }
 
-          const elo = player.calculate(opponentElo, j > i, this.kFactor)
-
-          eloDiff += elo
+          eloDiff += player.calculate(opponentElo, j > i, this.kFactor)
         }
       }
 
