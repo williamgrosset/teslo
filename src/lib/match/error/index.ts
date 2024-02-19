@@ -9,8 +9,9 @@ export const ErrorType = {
   MIN_PLAYERS: 'Need more players',
   MAX_TEAMS: 'Cannot add more teams',
   MIN_TEAMS: 'Need more teams',
-  SIZE_MISMATCH: 'Calculation does not match player size in match',
+  SIZE_MISMATCH: 'Calculation does not match contestant size in match',
   PLAYER_NOT_FOUND: 'Player not found',
+  TEAM_NOT_FOUND: 'Team not found',
   MISSING_OPPONENT_ELO: 'Could not find opponent elo'
 }
 
