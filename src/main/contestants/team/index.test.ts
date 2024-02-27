@@ -5,13 +5,9 @@ describe('Team', () => {
   let team: Team
 
   beforeEach(() => {
-    const player1 = new Player('1', 1000)
-    const player2 = new Player('2', 900)
-
     team = new Team('1')
-
-    team.addPlayer(player1)
-    team.addPlayer(player2)
+    team.addPlayer(new Player('1', 1000))
+    team.addPlayer(new Player('2', 900))
   })
 
   test('adds players to team', () => {

@@ -7,25 +7,18 @@ describe('TeamFreeForAll', () => {
   let match: TeamFreeForAll
 
   beforeEach(() => {
-    const player1 = new Player('1', 1000)
-    const player2 = new Player('2', 900)
-    const player3 = new Player('3', 800)
-    const player4 = new Player('4', 700)
-    const player5 = new Player('5', 600)
-    const player6 = new Player('6', 500)
     const team1 = new Team('1')
     const team2 = new Team('2')
     const team3 = new Team('3')
 
-    team1.addPlayer(player1)
-    team1.addPlayer(player2)
-    team2.addPlayer(player3)
-    team2.addPlayer(player4)
-    team3.addPlayer(player5)
-    team3.addPlayer(player6)
+    team1.addPlayer(new Player('1', 1000))
+    team1.addPlayer(new Player('2', 900))
+    team2.addPlayer(new Player('3', 800))
+    team2.addPlayer(new Player('4', 700))
+    team3.addPlayer(new Player('5', 600))
+    team3.addPlayer(new Player('6', 500))
 
     match = new TeamFreeForAll()
-
     match.addTeam(team1)
     match.addTeam(team2)
     match.addTeam(team3)

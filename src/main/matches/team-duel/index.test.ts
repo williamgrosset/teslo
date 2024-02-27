@@ -7,20 +7,15 @@ describe('TeamDuel', () => {
   let match: TeamDuel
 
   beforeEach(() => {
-    const player1 = new Player('1', 1000)
-    const player2 = new Player('2', 900)
-    const player3 = new Player('3', 800)
-    const player4 = new Player('4', 700)
     const team1 = new Team('1')
     const team2 = new Team('2')
 
-    team1.addPlayer(player1)
-    team1.addPlayer(player2)
-    team2.addPlayer(player3)
-    team2.addPlayer(player4)
+    team1.addPlayer(new Player('1', 1000))
+    team1.addPlayer(new Player('2', 900))
+    team2.addPlayer(new Player('3', 800))
+    team2.addPlayer(new Player('4', 700))
 
     match = new TeamDuel()
-
     match.addTeam(team1)
     match.addTeam(team2)
   })
