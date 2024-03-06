@@ -15,9 +15,7 @@ describe('Duel', () => {
       const player3 = new Player('3', 800)
       const match = new Duel()
 
-      match.addPlayer(player1)
-      match.addPlayer(player2)
-      match.addPlayer(player3)
+      match.addPlayer(player1).addPlayer(player2).addPlayer(player3)
     }).toThrow(ErrorType.MAX_PLAYERS)
   })
 
@@ -26,8 +24,7 @@ describe('Duel', () => {
     const player2 = new Player('2', 900)
     const match = new Duel()
 
-    match.addPlayer(player1)
-    match.addPlayer(player2)
+    match.addPlayer(player1).addPlayer(player2)
 
     const results = match.calculate('1')
 
@@ -48,8 +45,7 @@ describe('Duel', () => {
     const player2 = new Player('2', 900)
     const match = new Duel()
 
-    match.addPlayer(player1)
-    match.addPlayer(player2)
+    match.addPlayer(player1).addPlayer(player2)
 
     const results = match.calculate('2')
 
@@ -70,8 +66,7 @@ describe('Duel', () => {
     const player2 = new Player('2', 900)
     const match = new Duel()
 
-    match.addPlayer(player1)
-    match.addPlayer(player2)
+    match.addPlayer(player1).addPlayer(player2)
     match.calculate('1')
 
     expect(match.completed).toBe(true)
@@ -83,8 +78,7 @@ describe('Duel', () => {
       const player2 = new Player('2', 900)
       const match = new Duel()
 
-      match.addPlayer(player1)
-      match.addPlayer(player2)
+      match.addPlayer(player1).addPlayer(player2)
       match.calculate('1')
       match.calculate('1')
     }).toThrow(ErrorType.MATCH_COMPLETE)

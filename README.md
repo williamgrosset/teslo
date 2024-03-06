@@ -51,8 +51,7 @@ import { Player, Duel } from 'teslo'
 
 const match = new Duel()
 
-match.addPlayer(new Player('1', 1000))
-match.addPlayer(new Player('2', 900))
+match.addPlayer(new Player('1', 1000)).addPlayer(new Player('2', 900))
 
 const results = match.calculate('1')
 
@@ -77,9 +76,10 @@ import { Player, FreeForAll } from 'teslo'
 
 const match = new FreeForAll()
 
-match.addPlayer(new Player('1', 1000))
-match.addPlayer(new Player('2', 900))
-match.addPlayer(new Player('3', 800))
+match
+  .addPlayer(new Player('1', 1000))
+  .addPlayer(new Player('2', 900))
+  .addPlayer(new Player('3', 800))
 
 const results = match.calculate(['1', '2', '3'])
 
@@ -110,12 +110,9 @@ const match = new TeamDuel()
 const team1 = new Team('1')
 const team2 = new Team('2')
 
-team1.addPlayer(new Player('1', 1000))
-team1.addPlayer(new Player('2', 900))
-team2.addPlayer(new Player('3', 800))
-team2.addPlayer(new Player('4', 700))
-match.addTeam(team1)
-match.addTeam(team2)
+team1.addPlayer(new Player('1', 1000)).addPlayer(new Player('2', 900))
+team2.addPlayer(new Player('3', 800)).addPlayer(new Player('4', 700))
+match.addTeam(team1).addTeam(team2)
 
 const results = match.calculate('1')
 
@@ -161,15 +158,10 @@ const team1 = new Team('1')
 const team2 = new Team('2')
 const team3 = new Team('3')
 
-team1.addPlayer(new Player('1', 1000))
-team1.addPlayer(new Player('2', 900))
-team2.addPlayer(new Player('3', 800))
-team2.addPlayer(new Player('4', 700))
-team3.addPlayer(new Player('5', 600))
-team3.addPlayer(new Player('6', 500))
-match.addTeam(team1)
-match.addTeam(team2)
-match.addTeam(team3)
+team1.addPlayer(new Player('1', 1000)).addPlayer(new Player('2', 900))
+team2.addPlayer(new Player('3', 800)).addPlayer(new Player('4', 700))
+team3.addPlayer(new Player('5', 600)).addPlayer(new Player('6', 500))
+match.addTeam(team1).addTeam(team2).addTeam(team3)
 
 const results = match.calculate(['1', '2', '3'])
 
@@ -239,7 +231,7 @@ new Team(id: string)
 #### Methods
 
 ```ts
-addPlayer(player: Player)
+addPlayer(player: Player): this
 ```
 
 ### `Duel`
@@ -257,7 +249,7 @@ new Duel(options?: Options)
 #### Methods
 
 ```ts
-addPlayer(player: Player): void
+addPlayer(player: Player): this
 calculate(playerId: string): PlayerResult[]
 getResults(): PlayerResult[]
 ```
@@ -283,7 +275,7 @@ new FreeForAll(options?: Options)
 #### Methods
 
 ```ts
-addPlayer(player: Player): void
+addPlayer(player: Player): this
 calculate(playerIds: string[]): PlayerResult[]
 getResults(): PlayerResult[]
 ```
@@ -307,7 +299,7 @@ new TeamDuel(options?: Options)
 #### Methods
 
 ```ts
-addTeam(team: Team): void
+addTeam(team: Team): this
 calculate(teamId: string): TeamResult[]
 getResults(): TeamResult[]
 ```
@@ -333,7 +325,7 @@ new TeamFreeForAll(options?: Options)
 #### Methods
 
 ```ts
-addTeam(team: Team): void
+addTeam(team: Team): this
 calculate(teamIds: string[]): TeamResult[]
 getResults(): TeamResult[]
 ```

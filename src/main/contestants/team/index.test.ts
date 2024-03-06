@@ -6,8 +6,7 @@ describe('Team', () => {
 
   beforeEach(() => {
     team = new Team('1')
-    team.addPlayer(new Player('1', 1000))
-    team.addPlayer(new Player('2', 900))
+    team.addPlayer(new Player('1', 1000)).addPlayer(new Player('2', 900))
   })
 
   test('adds players to team', () => {

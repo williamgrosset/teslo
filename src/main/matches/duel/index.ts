@@ -15,12 +15,14 @@ export class Duel extends Match {
     })
   }
 
-  addPlayer(player: Player) {
+  addPlayer(player: Player): this {
     if (this.contestants.size === DUEL_SIZE) {
       throw new MatchError(ErrorType.MAX_PLAYERS)
     }
 
     this.addContestant(player)
+
+    return this
   }
 
   calculate(playerId: string): PlayerResult[] {

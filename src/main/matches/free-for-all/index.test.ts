@@ -13,8 +13,7 @@ describe('FreeForAll', () => {
     const player2 = new Player('2', 900)
     const match = new FreeForAll()
 
-    match.addPlayer(player1)
-    match.addPlayer(player2)
+    match.addPlayer(player1).addPlayer(player2)
 
     const results = match.calculate(['1', '2'])
 
@@ -35,8 +34,7 @@ describe('FreeForAll', () => {
     const player2 = new Player('2', 900)
     const match = new FreeForAll()
 
-    match.addPlayer(player1)
-    match.addPlayer(player2)
+    match.addPlayer(player1).addPlayer(player2)
 
     const results = match.calculate(['2', '1'])
 
@@ -58,9 +56,7 @@ describe('FreeForAll', () => {
     const player3 = new Player('3', 800)
     const match = new FreeForAll()
 
-    match.addPlayer(player1)
-    match.addPlayer(player2)
-    match.addPlayer(player3)
+    match.addPlayer(player1).addPlayer(player2).addPlayer(player3)
 
     const results = match.calculate(['1', '2', '3'])
 
@@ -86,9 +82,7 @@ describe('FreeForAll', () => {
     const player3 = new Player('3', 800)
     const match = new FreeForAll()
 
-    match.addPlayer(player1)
-    match.addPlayer(player2)
-    match.addPlayer(player3)
+    match.addPlayer(player1).addPlayer(player2).addPlayer(player3)
 
     const results = match.calculate(['2', '3', '1'])
 
@@ -114,9 +108,7 @@ describe('FreeForAll', () => {
     const player3 = new Player('3', 800)
     const match = new FreeForAll()
 
-    match.addPlayer(player1)
-    match.addPlayer(player2)
-    match.addPlayer(player3)
+    match.addPlayer(player1).addPlayer(player2).addPlayer(player3)
 
     const results = match.calculate(['3', '2', '1'])
 
@@ -160,8 +152,7 @@ describe('FreeForAll', () => {
       const player2 = new Player('2', 900)
       const match = new FreeForAll({ minPlayers: 3 })
 
-      match.addPlayer(player1)
-      match.addPlayer(player2)
+      match.addPlayer(player1).addPlayer(player2)
       match.calculate(['1', '2'])
     }).toThrow(ErrorType.MIN_PLAYERS)
   })
@@ -172,8 +163,7 @@ describe('FreeForAll', () => {
       const player2 = new Player('2', 900)
       const match = new FreeForAll()
 
-      match.addPlayer(player1)
-      match.addPlayer(player2)
+      match.addPlayer(player1).addPlayer(player2)
       match.calculate(['1'])
     }).toThrow(ErrorType.SIZE_MISMATCH)
   })

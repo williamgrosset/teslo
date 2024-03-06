@@ -10,14 +10,11 @@ describe('TeamDuel', () => {
     const team1 = new Team('1')
     const team2 = new Team('2')
 
-    team1.addPlayer(new Player('1', 1000))
-    team1.addPlayer(new Player('2', 900))
-    team2.addPlayer(new Player('3', 800))
-    team2.addPlayer(new Player('4', 700))
+    team1.addPlayer(new Player('1', 1000)).addPlayer(new Player('2', 900))
+    team2.addPlayer(new Player('3', 800)).addPlayer(new Player('4', 700))
 
     match = new TeamDuel()
-    match.addTeam(team1)
-    match.addTeam(team2)
+    match.addTeam(team1).addTeam(team2)
   })
 
   test('adds teams to match', () => {

@@ -9,8 +9,9 @@ export class Team {
     this.players = new Map()
   }
 
-  addPlayer(player: Player) {
+  addPlayer(player: Player): this {
     this.players.set(player.id, player)
+    return this
   }
 
   getAverageElo(): number {

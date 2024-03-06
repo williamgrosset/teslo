@@ -18,12 +18,14 @@ export class TeamFreeForAll extends Match {
     })
   }
 
-  addTeam(team: Team) {
+  addTeam(team: Team): this {
     if (this.contestants.size === this.maxContestants) {
       throw new MatchError(ErrorType.MAX_TEAMS)
     }
 
     this.addContestant(team)
+
+    return this
   }
 
   calculate(teamIds: string[]): TeamResult[] {

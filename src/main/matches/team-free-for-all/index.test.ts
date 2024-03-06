@@ -11,17 +11,12 @@ describe('TeamFreeForAll', () => {
     const team2 = new Team('2')
     const team3 = new Team('3')
 
-    team1.addPlayer(new Player('1', 1000))
-    team1.addPlayer(new Player('2', 900))
-    team2.addPlayer(new Player('3', 800))
-    team2.addPlayer(new Player('4', 700))
-    team3.addPlayer(new Player('5', 600))
-    team3.addPlayer(new Player('6', 500))
+    team1.addPlayer(new Player('1', 1000)).addPlayer(new Player('2', 900))
+    team2.addPlayer(new Player('3', 800)).addPlayer(new Player('4', 700))
+    team3.addPlayer(new Player('5', 600)).addPlayer(new Player('6', 500))
 
     match = new TeamFreeForAll()
-    match.addTeam(team1)
-    match.addTeam(team2)
-    match.addTeam(team3)
+    match.addTeam(team1).addTeam(team2).addTeam(team3)
   })
 
   test('adds teams to match', () => {
@@ -172,8 +167,7 @@ describe('TeamFreeForAll', () => {
       team1.addPlayer(new Player('1', 1000))
       team2.addPlayer(new Player('2', 900))
 
-      match.addTeam(team1)
-      match.addTeam(team2)
+      match.addTeam(team1).addTeam(team2)
       match.calculate(['1', '2'])
     }).toThrow(ErrorType.MIN_TEAMS)
   })
@@ -187,8 +181,7 @@ describe('TeamFreeForAll', () => {
       team1.addPlayer(new Player('1', 1000))
       team2.addPlayer(new Player('2', 900))
 
-      match.addTeam(team1)
-      match.addTeam(team2)
+      match.addTeam(team1).addTeam(team2)
       match.calculate(['1'])
     }).toThrow(ErrorType.SIZE_MISMATCH)
   })

@@ -18,12 +18,14 @@ export class FreeForAll extends Match {
     })
   }
 
-  addPlayer(player: Player) {
+  addPlayer(player: Player): this {
     if (this.contestants.size === this.maxContestants) {
       throw new MatchError(ErrorType.MAX_PLAYERS)
     }
 
     this.addContestant(player)
+
+    return this
   }
 
   calculate(playerIds: string[]): PlayerResult[] {
