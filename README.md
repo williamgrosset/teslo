@@ -221,6 +221,14 @@ const results = match.calculate(['1', '2', '3'])
 new Player(id: string, elo: number)
 ```
 
+#### Methods
+
+```ts
+static create(id: string, elo: number): Player
+getExpectedResult(opponentElo: number): number
+calculate(opponentElo: number, won: boolean, kFactor: number): number
+```
+
 ### `Team`
 
 #### Constructor
@@ -232,6 +240,7 @@ new Team(id: string)
 #### Methods
 
 ```ts
+static create(id: string, ...players: Player[]): Team
 addPlayer(player: Player): this
 addPlayers(...players: Player[]): this
 ```
@@ -251,6 +260,7 @@ new Duel(options?: Options)
 #### Methods
 
 ```ts
+static create(options?: Options, ...players: Player[]): Duel
 addPlayer(player: Player): this
 addPlayers(...players: Player[]): this
 calculate(playerId: string): PlayerResult[]
@@ -278,6 +288,7 @@ new FreeForAll(options?: Options)
 #### Methods
 
 ```ts
+static create(options?: Options, ...players: Player[]): FreeForAll
 addPlayer(player: Player): this
 addPlayers(...players: Player[]): this
 calculate(playerIds: string[]): PlayerResult[]
@@ -303,6 +314,7 @@ new TeamDuel(options?: Options)
 #### Methods
 
 ```ts
+static create(options?: Options, ...teams: Team[]): TeamDuel
 addTeam(team: Team): this
 addTeams(...teams: Team[]): this
 calculate(teamId: string): TeamResult[]
@@ -330,6 +342,7 @@ new TeamFreeForAll(options?: Options)
 #### Methods
 
 ```ts
+static create(options?: Options, ...teams: Team[]): TeamFreeForAll
 addTeam(team: Team): this
 addTeams(...teams: Team[]): this
 calculate(teamIds: string[]): TeamResult[]

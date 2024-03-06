@@ -17,6 +17,21 @@ describe('TeamDuel', () => {
     match.addTeams(team1, team2)
   })
 
+  test('instantiates with empty constructor', () => {
+    expect(match).toBeDefined()
+  })
+
+  test('factory method instantiates with teams', () => {
+    const match = TeamDuel.create(
+      {},
+      Team.create('1', Player.create('1', 1000), Player.create('2', 900)),
+      Team.create('2', Player.create('3', 800), Player.create('4', 700))
+    )
+    expect(match).toBeDefined()
+    expect(match).toBeInstanceOf(TeamDuel)
+    expect(match.contestants.size).toBe(2)
+  })
+
   test('adds teams to match', () => {
     expect(match.contestants.size).toBe(2)
   })

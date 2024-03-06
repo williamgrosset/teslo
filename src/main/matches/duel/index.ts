@@ -15,6 +15,12 @@ export class Duel extends Match {
     })
   }
 
+  static create(options?: DuelOptions, ...players: Player[]): Duel {
+    const match = new Duel(options)
+    match.addPlayers(...players)
+    return match
+  }
+
   addPlayer(player: Player): this {
     if (this.contestants.size === DUEL_SIZE) {
       throw new MatchError(ErrorType.MAX_PLAYERS)

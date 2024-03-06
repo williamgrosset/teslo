@@ -15,6 +15,12 @@ export class TeamDuel extends Match {
     })
   }
 
+  static create(options?: TeamDuelOptions, ...teams: Team[]): TeamDuel {
+    const match = new TeamDuel(options)
+    match.addTeams(...teams)
+    return match
+  }
+
   addTeam(team: Team): this {
     if (this.contestants.size === DUEL_SIZE) {
       throw new MatchError(ErrorType.MAX_TEAMS)

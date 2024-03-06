@@ -18,6 +18,12 @@ export class TeamFreeForAll extends Match {
     })
   }
 
+  static create(options?: Options, ...teams: Team[]): TeamFreeForAll {
+    const match = new TeamFreeForAll(options)
+    match.addTeams(...teams)
+    return match
+  }
+
   addTeam(team: Team): this {
     if (this.contestants.size === this.maxContestants) {
       throw new MatchError(ErrorType.MAX_TEAMS)

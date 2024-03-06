@@ -18,6 +18,12 @@ export class FreeForAll extends Match {
     })
   }
 
+  static create(options?: FreeForAllOptions, ...players: Player[]): FreeForAll {
+    const match = new FreeForAll(options)
+    match.addPlayers(...players)
+    return match
+  }
+
   addPlayer(player: Player): this {
     if (this.contestants.size === this.maxContestants) {
       throw new MatchError(ErrorType.MAX_PLAYERS)

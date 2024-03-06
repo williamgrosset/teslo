@@ -13,6 +13,10 @@ export class Player {
     this.elo = elo
   }
 
+  static create(id: string, elo: number): Player {
+    return new Player(id, elo)
+  }
+
   getExpectedResult(opponentElo: number): number {
     return (
       1 /

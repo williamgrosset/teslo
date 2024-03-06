@@ -9,6 +9,12 @@ export class Team {
     this.players = new Map()
   }
 
+  static create(id: string, ...players: Player[]): Team {
+    const team = new Team(id)
+    team.addPlayers(...players)
+    return team
+  }
+
   addPlayer(player: Player): this {
     this.players.set(player.id, player)
     return this

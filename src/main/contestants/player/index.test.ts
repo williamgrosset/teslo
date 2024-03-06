@@ -3,6 +3,15 @@ import { Player } from '.'
 describe('Player', () => {
   test('instantiates with id and elo', () => {
     const player = new Player('1', 1000)
+    expect(player).toBeDefined()
+    expect(player.id).toBe('1')
+    expect(player.elo).toBe(1000)
+  })
+
+  test('factory method instantiates with id and elo', () => {
+    const player = Player.create('1', 1000)
+    expect(player).toBeDefined()
+    expect(player).toBeInstanceOf(Player)
     expect(player.id).toBe('1')
     expect(player.elo).toBe(1000)
   })

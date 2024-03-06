@@ -8,6 +8,17 @@ describe('FreeForAll', () => {
     expect(match).toBeDefined()
   })
 
+  test('factory method instantiates with players', () => {
+    const match = FreeForAll.create(
+      {},
+      Player.create('1', 1000),
+      Player.create('2', 900)
+    )
+    expect(match).toBeDefined()
+    expect(match).toBeInstanceOf(FreeForAll)
+    expect(match.contestants.size).toBe(2)
+  })
+
   test('calculates elo for player 1 win with 2 players', () => {
     const player1 = new Player('1', 1000)
     const player2 = new Player('2', 900)

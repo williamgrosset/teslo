@@ -19,6 +19,22 @@ describe('TeamFreeForAll', () => {
     match.addTeams(team1, team2, team3)
   })
 
+  test('instantiates with empty constructor', () => {
+    expect(match).toBeDefined()
+  })
+
+  test('factory method instantiates with teams', () => {
+    const match = TeamFreeForAll.create(
+      {},
+      Team.create('1', Player.create('1', 1000), Player.create('2', 900)),
+      Team.create('2', Player.create('3', 800), Player.create('4', 700)),
+      Team.create('3', Player.create('5', 600), Player.create('4', 500))
+    )
+    expect(match).toBeDefined()
+    expect(match).toBeInstanceOf(TeamFreeForAll)
+    expect(match.contestants.size).toBe(3)
+  })
+
   test('adds teams to match', () => {
     expect(match.contestants.size).toBe(3)
   })
