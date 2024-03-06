@@ -14,6 +14,11 @@ export class Team {
     return this
   }
 
+  addPlayers(...players: Player[]): this {
+    players.forEach(player => this.addPlayer(player))
+    return this
+  }
+
   getAverageElo(): number {
     if (this.players.size === 0) {
       return 0

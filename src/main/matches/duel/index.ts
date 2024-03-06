@@ -25,6 +25,11 @@ export class Duel extends Match {
     return this
   }
 
+  addPlayers(...players: Player[]): this {
+    players.forEach(player => this.addPlayer(player))
+    return this
+  }
+
   calculate(playerId: string): PlayerResult[] {
     if (this.completed) {
       throw new MatchError(ErrorType.MATCH_COMPLETE)

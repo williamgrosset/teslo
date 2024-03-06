@@ -28,6 +28,11 @@ export class TeamFreeForAll extends Match {
     return this
   }
 
+  addTeams(...teams: Team[]): this {
+    teams.forEach(team => this.addTeam(team))
+    return this
+  }
+
   calculate(teamIds: string[]): TeamResult[] {
     if (this.completed) {
       throw new MatchError(ErrorType.MATCH_COMPLETE)

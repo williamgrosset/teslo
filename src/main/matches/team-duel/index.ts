@@ -25,6 +25,11 @@ export class TeamDuel extends Match {
     return this
   }
 
+  addTeams(...teams: Team[]): this {
+    teams.forEach(team => this.addTeam(team))
+    return this
+  }
+
   calculate(teamId: string): TeamResult[] {
     if (this.completed) {
       throw new MatchError(ErrorType.MATCH_COMPLETE)
