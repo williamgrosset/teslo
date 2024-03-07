@@ -18,7 +18,10 @@ export class TeamFreeForAll extends Match {
     })
   }
 
-  static create(options?: Options, ...teams: Team[]): TeamFreeForAll {
+  static create(
+    options?: TeamFreeForAllOptions,
+    ...teams: Team[]
+  ): TeamFreeForAll {
     const match = new TeamFreeForAll(options)
     match.addTeams(...teams)
     return match
