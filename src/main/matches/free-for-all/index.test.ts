@@ -26,7 +26,7 @@ describe('FreeForAll', () => {
 
     match.addPlayers(player1, player2)
 
-    const results = match.calculate(['1', '2'])
+    const results = match.calculate('1', '2')
 
     expect(results).toStrictEqual([
       {
@@ -47,7 +47,7 @@ describe('FreeForAll', () => {
 
     match.addPlayers(player1, player2)
 
-    const results = match.calculate(['2', '1'])
+    const results = match.calculate('2', '1')
 
     expect(results).toStrictEqual([
       {
@@ -69,7 +69,7 @@ describe('FreeForAll', () => {
 
     match.addPlayers(player1, player2, player3)
 
-    const results = match.calculate(['1', '2', '3'])
+    const results = match.calculate('1', '2', '3')
 
     expect(results).toStrictEqual([
       {
@@ -95,7 +95,7 @@ describe('FreeForAll', () => {
 
     match.addPlayers(player1, player2, player3)
 
-    const results = match.calculate(['2', '3', '1'])
+    const results = match.calculate('2', '3', '1')
 
     expect(results).toStrictEqual([
       {
@@ -121,7 +121,7 @@ describe('FreeForAll', () => {
 
     match.addPlayers(player1, player2, player3)
 
-    const results = match.calculate(['3', '2', '1'])
+    const results = match.calculate('3', '2', '1')
 
     expect(results).toStrictEqual([
       {
@@ -147,7 +147,7 @@ describe('FreeForAll', () => {
     }
 
     const results = match.calculate(
-      Array.from({ length: 100 }, (_, i) => (i + 1).toString())
+      ...Array.from({ length: 100 }, (_, i) => (i + 1).toString())
     )
 
     expect(results[0].elo).toBe(1016)
@@ -164,7 +164,7 @@ describe('FreeForAll', () => {
       const match = new FreeForAll({ minPlayers: 3 })
 
       match.addPlayers(player1, player2)
-      match.calculate(['1', '2'])
+      match.calculate('1', '2')
     }).toThrow(ErrorType.MIN_PLAYERS)
   })
 
@@ -175,7 +175,7 @@ describe('FreeForAll', () => {
       const match = new FreeForAll()
 
       match.addPlayers(player1, player2)
-      match.calculate(['1'])
+      match.calculate('1')
     }).toThrow(ErrorType.SIZE_MISMATCH)
   })
 })

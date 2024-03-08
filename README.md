@@ -82,7 +82,7 @@ match.addPlayers(
   new Player('3', 800)
 )
 
-const results = match.calculate(['1', '2', '3'])
+const results = match.calculate('1', '2', '3')
 
 /*
   [
@@ -164,7 +164,7 @@ team2.addPlayers(new Player('3', 800), new Player('4', 700))
 team3.addPlayers(new Player('5', 600), new Player('6', 500))
 match.addTeams(team1, team2, team3)
 
-const results = match.calculate(['1', '2', '3'])
+const results = match.calculate('1', '2', '3')
 
 /*
   [
@@ -291,7 +291,7 @@ new FreeForAll(options?: Options)
 static create(options?: Options, ...players: Player[]): FreeForAll
 addPlayer(player: Player): this
 addPlayers(...players: Player[]): this
-calculate(playerIds: string[]): PlayerResult[]
+calculate(...playerIds: string[]): PlayerResult[]
 getResults(): PlayerResult[]
 ```
 
@@ -345,7 +345,7 @@ new TeamFreeForAll(options?: Options)
 static create(options?: Options, ...teams: Team[]): TeamFreeForAll
 addTeam(team: Team): this
 addTeams(...teams: Team[]): this
-calculate(teamIds: string[]): TeamResult[]
+calculate(...teamIds: string[]): TeamResult[]
 getResults(): TeamResult[]
 ```
 
