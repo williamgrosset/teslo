@@ -5,9 +5,9 @@
 ![Downloads](https://img.shields.io/npm/dt/teslo)
 ![Build size](https://img.shields.io/bundlephobia/minzip/teslo)
 
-Teslo is a TypeScript package for calculating elo rating in multiplayer games.
+`teslo` is a TypeScript package for calculating elo rating in multiplayer games.
 
-> Supports duels, free-for-alls, and team matches. Compatible with both Node.js and browser environments.
+> Supports duels, free-for-alls, and team matches. Compatible with both browser and Node.js environments.
 
 ### Table of Contents
 
@@ -26,6 +26,7 @@ Teslo is a TypeScript package for calculating elo rating in multiplayer games.
   - [`TeamFreeForAll`](#teamfreeforall)
 - [Elo Calculation](#elo-calculation)
 - [Development](#development)
+- [License](#license)
 
 ## Install
 
@@ -361,13 +362,13 @@ Elo calculation starts with a player to player comparison. Initially, we calcula
 Expected Result = 1 / (1 + 10 ^ ((Opponent Elo - Player Elo) / 400))
 ```
 
-Once we have the expected result of a player against their opponent, we can calculate their new elo with the actual result. `Result` is either a `1` or `0` based on the player winning or losing respectively.
+Once we have the expected result of a player against their opponent, we calculate their new elo with the actual result. `Result` is either a `1` or `0` based on the player winning or losing respectively.
 
 ```ts
-New Elo = Old Elo + KFactor * (Result - Expected Result)
+New Elo = Current Elo + KFactor * (Result - Expected Result)
 ```
 
-In a duel, elo calculation is straightforward as one player wins and the other loses. In a free-for-all, elo is calculated by player placement. Players lose elo to those who placed higher and gain elo from those who placed lower. In a team match, each player's elo is calculated based on the average elo of the opposing team(s).
+In a duel, each player either gains or loses elo based on winning or losing. In a free-for-all, elo is calculated by player placement; players lose elo to those who placed higher and gain elo from those who placed lower. In a team match, each player's elo is calculated based on the average elo of the opposing team(s).
 
 You can learn more about the elo rating system via the [Wiki](https://en.wikipedia.org/wiki/Elo_rating_system).
 
