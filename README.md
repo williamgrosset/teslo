@@ -244,6 +244,7 @@ new Team(id: string)
 static create(id: string, ...players: Player[]): Team
 addPlayer(player: Player): this
 addPlayers(...players: Player[]): this
+getAverageElo(): number
 ```
 
 ### `Duel`
