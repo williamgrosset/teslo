@@ -4,15 +4,17 @@ export class Team {
   id: string
   players: Map<string, Player>
 
-  constructor(id: string) {
+  constructor(id: string, players?: Player[]) {
     this.id = id
     this.players = new Map()
+
+    if (players) {
+      this.addPlayers(...players)
+    }
   }
 
-  static create(id: string, ...players: Player[]): Team {
-    const team = new Team(id)
-    team.addPlayers(...players)
-    return team
+  static create(id: string, players?: Player[]): Team {
+    return new Team(id, players)
   }
 
   addPlayer(player: Player): this {

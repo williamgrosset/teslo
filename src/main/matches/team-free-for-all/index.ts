@@ -10,21 +10,23 @@ interface TeamFreeForAllOptions extends Partial<Pick<Options, 'kFactor'>> {
 }
 
 export class TeamFreeForAll extends Match {
-  constructor(options?: TeamFreeForAllOptions) {
+  constructor(teams?: Team[], options?: TeamFreeForAllOptions) {
     super({
-      ...options,
       minContestants: options?.minTeams,
-      maxContestants: options?.maxTeams
+      maxContestants: options?.maxTeams,
+      ...options,
     })
+
+    if (teams) {
+      this.addTeams(...teams)
+    }
   }
 
   static create(
-    options?: TeamFreeForAllOptions,
-    ...teams: Team[]
+    teams?: Team[],
+    options?: TeamFreeForAllOptions
   ): TeamFreeForAll {
-    const match = new TeamFreeForAll(options)
-    match.addTeams(...teams)
-    return match
+    return new TeamFreeForAll(teams, options)
   }
 
   addTeam(team: Team): this {

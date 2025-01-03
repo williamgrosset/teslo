@@ -9,11 +9,10 @@ describe('Duel', () => {
   })
 
   test('factory method instantiates with players', () => {
-    const match = Duel.create(
-      {},
+    const match = Duel.create([
       Player.create('1', 1000),
       Player.create('2', 900)
-    )
+    ])
     expect(match).toBeDefined()
     expect(match).toBeInstanceOf(Duel)
     expect(match.contestants.size).toBe(2)
@@ -31,12 +30,10 @@ describe('Duel', () => {
   })
 
   test('calculates elo for player 1 win', () => {
-    const player1 = new Player('1', 1000)
-    const player2 = new Player('2', 900)
-    const match = new Duel()
-
-    match.addPlayers(player1, player2)
-
+    const match = new Duel([
+      new Player('1', 1000),
+      new Player('2', 900)
+    ])
     const results = match.calculate('1')
 
     expect(results).toStrictEqual([
@@ -52,13 +49,12 @@ describe('Duel', () => {
   })
 
   test('calculates elo for player 2 win', () => {
-    const player1 = new Player('1', 1000)
-    const player2 = new Player('2', 900)
-    const match = new Duel()
-
-    match.addPlayers(player1, player2)
-
-    const results = match.calculate('2')
+    const results = new Duel()
+      .addPlayers(
+        new Player('1', 1000),
+        new Player('2', 900)
+      )
+      .calculate('2')
 
     expect(results).toStrictEqual([
       {
@@ -73,11 +69,11 @@ describe('Duel', () => {
   })
 
   test('sets match completion after calculation', () => {
-    const player1 = new Player('1', 1000)
-    const player2 = new Player('2', 900)
-    const match = new Duel()
+    const match = new Duel([
+      new Player('1', 1000),
+      new Player('2', 900)
+    ])
 
-    match.addPlayers(player1, player2)
     match.calculate('1')
 
     expect(match.completed).toBe(true)
@@ -85,11 +81,11 @@ describe('Duel', () => {
 
   test('throws error if trying to calculate when already calculated', () => {
     expect(() => {
-      const player1 = new Player('1', 1000)
-      const player2 = new Player('2', 900)
-      const match = new Duel()
+      const match = new Duel([
+        new Player('1', 1000),
+        new Player('2', 900)
+      ])
 
-      match.addPlayers(player1, player2)
       match.calculate('1')
       match.calculate('1')
     }).toThrow(ErrorType.MATCH_COMPLETE)
@@ -97,10 +93,10 @@ describe('Duel', () => {
 
   test('throws error when calculating without 2 players', () => {
     expect(() => {
-      const player1 = new Player('1', 1000)
-      const match = new Duel()
+      const match = new Duel([
+        new Player('1', 1000)
+      ])
 
-      match.addPlayer(player1)
       match.calculate('1')
     }).toThrow(ErrorType.MIN_PLAYERS)
   })

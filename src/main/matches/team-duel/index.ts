@@ -7,18 +7,20 @@ import { MatchError, ErrorType } from '../../../lib/match/error'
 type TeamDuelOptions = Partial<Pick<Options, 'kFactor'>>
 
 export class TeamDuel extends Match {
-  constructor(options?: TeamDuelOptions) {
+  constructor(teams?: Team[], options?: TeamDuelOptions) {
     super({
-      ...options,
       minContestants: DUEL_SIZE,
-      maxContestants: DUEL_SIZE
+      maxContestants: DUEL_SIZE,
+      ...options
     })
+
+    if (teams) {
+      this.addTeams(...teams)
+    }
   }
 
-  static create(options?: TeamDuelOptions, ...teams: Team[]): TeamDuel {
-    const match = new TeamDuel(options)
-    match.addTeams(...teams)
-    return match
+  static create(teams?: Team[], options?: TeamDuelOptions): TeamDuel {
+    return new TeamDuel(teams, options)
   }
 
   addTeam(team: Team): this {

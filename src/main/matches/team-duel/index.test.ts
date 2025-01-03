@@ -7,14 +7,10 @@ describe('TeamDuel', () => {
   let match: TeamDuel
 
   beforeEach(() => {
-    const team1 = new Team('1')
-    const team2 = new Team('2')
-
-    team1.addPlayers(new Player('1', 1000), new Player('2', 900))
-    team2.addPlayers(new Player('3', 800), new Player('4', 700))
-
-    match = new TeamDuel()
-    match.addTeams(team1, team2)
+    match = new TeamDuel([
+      new Team('1', [new Player('1', 1000), new Player('2', 900)]),
+      new Team('2', [new Player('3', 800), new Player('4', 700)])
+    ])
   })
 
   test('instantiates with empty constructor', () => {
@@ -22,11 +18,10 @@ describe('TeamDuel', () => {
   })
 
   test('factory method instantiates with teams', () => {
-    const match = TeamDuel.create(
-      {},
-      Team.create('1', Player.create('1', 1000), Player.create('2', 900)),
-      Team.create('2', Player.create('3', 800), Player.create('4', 700))
-    )
+    const match = TeamDuel.create([
+      Team.create('1', [Player.create('1', 1000), Player.create('2', 900)]),
+      Team.create('2', [Player.create('3', 800), Player.create('4', 700)])
+    ])
     expect(match).toBeDefined()
     expect(match).toBeInstanceOf(TeamDuel)
     expect(match.contestants.size).toBe(2)
@@ -109,11 +104,9 @@ describe('TeamDuel', () => {
 
   test('throws error when calculating without 2 teams', () => {
     expect(() => {
-      match = new TeamDuel()
-      const team = new Team('1')
-
-      match.addTeam(team)
-      match.calculate('1')
+      new TeamDuel(
+        [new Team('1')]
+      ).calculate('1')
     }).toThrow(ErrorType.MIN_TEAMS)
   })
 })

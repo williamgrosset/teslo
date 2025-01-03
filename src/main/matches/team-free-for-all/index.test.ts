@@ -7,16 +7,11 @@ describe('TeamFreeForAll', () => {
   let match: TeamFreeForAll
 
   beforeEach(() => {
-    const team1 = new Team('1')
-    const team2 = new Team('2')
-    const team3 = new Team('3')
-
-    team1.addPlayers(new Player('1', 1000), new Player('2', 900))
-    team2.addPlayers(new Player('3', 800), new Player('4', 700))
-    team3.addPlayers(new Player('5', 600), new Player('6', 500))
-
-    match = new TeamFreeForAll()
-    match.addTeams(team1, team2, team3)
+    match = new TeamFreeForAll([
+      new Team('1', [new Player('1', 1000), new Player('2', 900)]),
+      new Team('2', [new Player('3', 800), new Player('4', 700)]),
+      new Team('3', [new Player('5', 600), new Player('6', 500)])
+    ])
   })
 
   test('instantiates with empty constructor', () => {
@@ -24,12 +19,11 @@ describe('TeamFreeForAll', () => {
   })
 
   test('factory method instantiates with teams', () => {
-    const match = TeamFreeForAll.create(
-      {},
-      Team.create('1', Player.create('1', 1000), Player.create('2', 900)),
-      Team.create('2', Player.create('3', 800), Player.create('4', 700)),
-      Team.create('3', Player.create('5', 600), Player.create('4', 500))
-    )
+    const match = TeamFreeForAll.create([
+      Team.create('1', [Player.create('1', 1000), Player.create('2', 900)]),
+      Team.create('2', [Player.create('3', 800), Player.create('4', 700)]),
+      Team.create('3', [Player.create('5', 600), Player.create('4', 500)])
+    ])
     expect(match).toBeDefined()
     expect(match).toBeInstanceOf(TeamFreeForAll)
     expect(match.contestants.size).toBe(3)
@@ -176,29 +170,24 @@ describe('TeamFreeForAll', () => {
 
   test('throws error if calculating without min teams', () => {
     expect(() => {
-      const team1 = new Team('1')
-      const team2 = new Team('2')
-      const match = new TeamFreeForAll({ minTeams: 3 })
-
-      team1.addPlayer(new Player('1', 1000))
-      team2.addPlayer(new Player('2', 900))
-
-      match.addTeams(team1, team2)
-      match.calculate('1', '2')
+      new TeamFreeForAll(
+        [
+          new Team('1', [new Player('1', 1000)]),
+          new Team('2', [new Player('2', 900)])
+        ],
+        { minTeams: 3 }
+      ).calculate('1', '2')
     }).toThrow(ErrorType.MIN_TEAMS)
   })
 
   test('throws error if calculation does not match team size in match', () => {
     expect(() => {
-      const team1 = new Team('1')
-      const team2 = new Team('2')
-      const match = new TeamFreeForAll()
-
-      team1.addPlayer(new Player('1', 1000))
-      team2.addPlayer(new Player('2', 900))
-
-      match.addTeams(team1, team2)
-      match.calculate('1')
+      new TeamFreeForAll(
+        [
+          new Team('1', [new Player('1', 1000)]),
+          new Team('2', [new Player('2', 900)])
+        ],
+      ).calculate('1')
     }).toThrow(ErrorType.SIZE_MISMATCH)
   })
 })

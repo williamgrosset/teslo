@@ -10,18 +10,20 @@ interface FreeForAllOptions extends Partial<Pick<Options, 'kFactor'>> {
 }
 
 export class FreeForAll extends Match {
-  constructor(options?: FreeForAllOptions) {
+  constructor(players?: Player[], options?: FreeForAllOptions) {
     super({
-      ...options,
       minContestants: options?.minPlayers,
-      maxContestants: options?.maxPlayers
+      maxContestants: options?.maxPlayers,
+      ...options,
     })
+
+    if (players) {
+      this.addPlayers(...players)
+    }
   }
 
-  static create(options?: FreeForAllOptions, ...players: Player[]): FreeForAll {
-    const match = new FreeForAll(options)
-    match.addPlayers(...players)
-    return match
+  static create(players?: Player[], options?: FreeForAllOptions): FreeForAll {
+    return new FreeForAll(players, options)
   }
 
   addPlayer(player: Player): this {
