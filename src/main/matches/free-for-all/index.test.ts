@@ -9,23 +9,20 @@ describe('FreeForAll', () => {
   })
 
   test('factory method instantiates with players', () => {
-    const match = FreeForAll.create(
-      {},
+    const match = FreeForAll.create([
       Player.create('1', 1000),
       Player.create('2', 900)
-    )
+    ])
     expect(match).toBeDefined()
     expect(match).toBeInstanceOf(FreeForAll)
     expect(match.contestants.size).toBe(2)
   })
 
   test('calculates elo for player 1 win with 2 players', () => {
-    const player1 = new Player('1', 1000)
-    const player2 = new Player('2', 900)
-    const match = new FreeForAll()
-
-    match.addPlayers(player1, player2)
-
+    const match = new FreeForAll([
+      new Player('1', 1000),
+      new Player('2', 900)
+    ])
     const results = match.calculate('1', '2')
 
     expect(results).toStrictEqual([
@@ -41,12 +38,10 @@ describe('FreeForAll', () => {
   })
 
   test('calculates elo for player 2 win with 2 players', () => {
-    const player1 = new Player('1', 1000)
-    const player2 = new Player('2', 900)
-    const match = new FreeForAll()
-
-    match.addPlayers(player1, player2)
-
+    const match = new FreeForAll([
+      new Player('1', 1000),
+      new Player('2', 900)
+    ])
     const results = match.calculate('2', '1')
 
     expect(results).toStrictEqual([
@@ -62,13 +57,11 @@ describe('FreeForAll', () => {
   })
 
   test('calculates elo for player 1 win with 3 players', () => {
-    const player1 = new Player('1', 1000)
-    const player2 = new Player('2', 900)
-    const player3 = new Player('3', 800)
-    const match = new FreeForAll()
-
-    match.addPlayers(player1, player2, player3)
-
+    const match = new FreeForAll([
+      new Player('1', 1000),
+      new Player('2', 900),
+      new Player('3', 800)
+    ])
     const results = match.calculate('1', '2', '3')
 
     expect(results).toStrictEqual([
@@ -88,13 +81,11 @@ describe('FreeForAll', () => {
   })
 
   test('calculates elo for player 2 win with 3 players', () => {
-    const player1 = new Player('1', 1000)
-    const player2 = new Player('2', 900)
-    const player3 = new Player('3', 800)
-    const match = new FreeForAll()
-
-    match.addPlayers(player1, player2, player3)
-
+    const match = new FreeForAll([
+      new Player('1', 1000),
+      new Player('2', 900),
+      new Player('3', 800)
+    ])
     const results = match.calculate('2', '3', '1')
 
     expect(results).toStrictEqual([
@@ -114,13 +105,11 @@ describe('FreeForAll', () => {
   })
 
   test('calculates elo for player 3 win with 3 players', () => {
-    const player1 = new Player('1', 1000)
-    const player2 = new Player('2', 900)
-    const player3 = new Player('3', 800)
-    const match = new FreeForAll()
-
-    match.addPlayers(player1, player2, player3)
-
+    const match = new FreeForAll([
+      new Player('1', 1000),
+      new Player('2', 900),
+      new Player('3', 800)
+    ])
     const results = match.calculate('3', '2', '1')
 
     expect(results).toStrictEqual([
@@ -159,23 +148,24 @@ describe('FreeForAll', () => {
 
   test('throws error if trying to calculate when min players for match has not been reached', () => {
     expect(() => {
-      const player1 = new Player('1', 1000)
-      const player2 = new Player('2', 900)
-      const match = new FreeForAll({ minPlayers: 3 })
-
-      match.addPlayers(player1, player2)
-      match.calculate('1', '2')
+      new FreeForAll(
+        [
+          new Player('1', 1000),
+          new Player('2', 900)
+        ],
+        {
+          minPlayers: 3
+        }
+      ).calculate('1', '2')
     }).toThrow(ErrorType.MIN_PLAYERS)
   })
 
   test('throws error if calculation does not match player size in match', () => {
     expect(() => {
-      const player1 = new Player('1', 1000)
-      const player2 = new Player('2', 900)
-      const match = new FreeForAll()
-
-      match.addPlayers(player1, player2)
-      match.calculate('1')
+      new FreeForAll([
+        new Player('1', 1000),
+        new Player('2', 900)
+      ]).calculate('1')
     }).toThrow(ErrorType.SIZE_MISMATCH)
   })
 })
