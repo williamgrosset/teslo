@@ -37,7 +37,7 @@ export class TeamFreeForAll extends Match {
   }
 
   addTeams(...teams: Team[]): this {
-    teams.forEach((team) => this.addTeam(team))
+    teams.forEach(team => this.addTeam(team))
     return this
   }
 
