@@ -1,6 +1,6 @@
 # teslo
 
-![Build status](https://img.shields.io/github/actions/workflow/status/williamgrosset/teslo/test.yml)
+![Build status](https://img.shields.io/github/actions/workflow/status/williamgrosset/teslo/ci.yml)
 ![Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen)
 ![Downloads](https://img.shields.io/npm/dt/teslo)
 ![Build size](https://img.shields.io/bundlephobia/minzip/teslo)
