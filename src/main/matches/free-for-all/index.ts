@@ -27,7 +27,7 @@ export class FreeForAll extends Match {
   }
 
   addPlayer(player: Player): this {
-    if (this.contestants.size === this.maxContestants) {
+    if (this.size === this.maxContestants) {
       throw new MatchError(ErrorType.MAX_PLAYERS)
     }
 
@@ -46,11 +46,11 @@ export class FreeForAll extends Match {
       throw new MatchError(ErrorType.MATCH_COMPLETE)
     }
 
-    if (this.contestants.size < this.minContestants) {
+    if (this.size < this.minContestants) {
       throw new MatchError(ErrorType.MIN_PLAYERS)
     }
 
-    if (this.contestants.size !== playerIds.length) {
+    if (this.size !== playerIds.length) {
       throw new MatchError(ErrorType.SIZE_MISMATCH)
     }
 

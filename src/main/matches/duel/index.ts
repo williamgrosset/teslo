@@ -24,7 +24,7 @@ export class Duel extends Match {
   }
 
   addPlayer(player: Player): this {
-    if (this.contestants.size === DUEL_SIZE) {
+    if (this.size === DUEL_SIZE) {
       throw new MatchError(ErrorType.MAX_PLAYERS)
     }
 
@@ -43,7 +43,7 @@ export class Duel extends Match {
       throw new MatchError(ErrorType.MATCH_COMPLETE)
     }
 
-    if (this.contestants.size !== DUEL_SIZE) {
+    if (this.size !== DUEL_SIZE) {
       throw new MatchError(ErrorType.MIN_PLAYERS)
     }
 

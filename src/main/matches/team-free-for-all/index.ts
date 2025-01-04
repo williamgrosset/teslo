@@ -27,7 +27,7 @@ export class TeamFreeForAll extends Match {
   }
 
   addTeam(team: Team): this {
-    if (this.contestants.size === this.maxContestants) {
+    if (this.size === this.maxContestants) {
       throw new MatchError(ErrorType.MAX_TEAMS)
     }
 
@@ -46,11 +46,11 @@ export class TeamFreeForAll extends Match {
       throw new MatchError(ErrorType.MATCH_COMPLETE)
     }
 
-    if (this.contestants.size < this.minContestants) {
+    if (this.size < this.minContestants) {
       throw new MatchError(ErrorType.MIN_TEAMS)
     }
 
-    if (this.contestants.size !== teamIds.length) {
+    if (this.size !== teamIds.length) {
       throw new MatchError(ErrorType.SIZE_MISMATCH)
     }
 
