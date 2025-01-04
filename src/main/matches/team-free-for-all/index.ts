@@ -14,7 +14,7 @@ export class TeamFreeForAll extends Match {
     super({
       minContestants: options?.minTeams,
       maxContestants: options?.maxTeams,
-      ...options,
+      ...options
     })
 
     if (teams) {
@@ -22,10 +22,7 @@ export class TeamFreeForAll extends Match {
     }
   }
 
-  static create(
-    teams?: Team[],
-    options?: TeamFreeForAllOptions
-  ): TeamFreeForAll {
+  static create(teams?: Team[], options?: TeamFreeForAllOptions): TeamFreeForAll {
     return new TeamFreeForAll(teams, options)
   }
 
@@ -40,7 +37,7 @@ export class TeamFreeForAll extends Match {
   }
 
   addTeams(...teams: Team[]): this {
-    teams.forEach(team => this.addTeam(team))
+    teams.forEach((team) => this.addTeam(team))
     return this
   }
 
@@ -66,7 +63,7 @@ export class TeamFreeForAll extends Match {
         throw new MatchError(ErrorType.TEAM_NOT_FOUND)
       }
 
-      for (const [_, player] of team.players) {
+      for (const [, player] of team.players) {
         let eloDiff = 0
 
         for (let j = 0; j < teamIds.length; j++) {

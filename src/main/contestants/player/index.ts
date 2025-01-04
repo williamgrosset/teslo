@@ -18,10 +18,7 @@ export class Player {
   }
 
   getExpectedResult(opponentElo: number): number {
-    return (
-      1 /
-      (1 + Math.pow(10, (opponentElo - this.elo) / DEFAULT_ELO_SCALE_FACTOR))
-    )
+    return 1 / (1 + Math.pow(10, (opponentElo - this.elo) / DEFAULT_ELO_SCALE_FACTOR))
   }
 
   calculate(opponentElo: number, won: boolean, kFactor: number): number {

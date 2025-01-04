@@ -34,7 +34,7 @@ export class TeamDuel extends Match {
   }
 
   addTeams(...teams: Team[]): this {
-    teams.forEach(team => this.addTeam(team))
+    teams.forEach((team) => this.addTeam(team))
     return this
   }
 
@@ -57,7 +57,7 @@ export class TeamDuel extends Match {
         throw new MatchError(ErrorType.MISSING_OPPONENT_ELO)
       }
 
-      for (const [_, player] of team.players) {
+      for (const [, player] of team.players) {
         const elo = player.calculate(elos[0], teamId === id, this.kFactor)
 
         player.elo = elo

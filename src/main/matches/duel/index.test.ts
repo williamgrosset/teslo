@@ -9,10 +9,7 @@ describe('Duel', () => {
   })
 
   test('factory method instantiates with players', () => {
-    const match = Duel.create([
-      Player.create('1', 1000),
-      Player.create('2', 900)
-    ])
+    const match = Duel.create([Player.create('1', 1000), Player.create('2', 900)])
     expect(match).toBeDefined()
     expect(match).toBeInstanceOf(Duel)
     expect(match.contestants.size).toBe(2)
@@ -30,10 +27,7 @@ describe('Duel', () => {
   })
 
   test('calculates elo for player 1 win', () => {
-    const match = new Duel([
-      new Player('1', 1000),
-      new Player('2', 900)
-    ])
+    const match = new Duel([new Player('1', 1000), new Player('2', 900)])
     const results = match.calculate('1')
 
     expect(results).toStrictEqual([
@@ -50,10 +44,7 @@ describe('Duel', () => {
 
   test('calculates elo for player 2 win', () => {
     const results = new Duel()
-      .addPlayers(
-        new Player('1', 1000),
-        new Player('2', 900)
-      )
+      .addPlayers(new Player('1', 1000), new Player('2', 900))
       .calculate('2')
 
     expect(results).toStrictEqual([
@@ -69,10 +60,7 @@ describe('Duel', () => {
   })
 
   test('sets match completion after calculation', () => {
-    const match = new Duel([
-      new Player('1', 1000),
-      new Player('2', 900)
-    ])
+    const match = new Duel([new Player('1', 1000), new Player('2', 900)])
 
     match.calculate('1')
 
@@ -81,10 +69,7 @@ describe('Duel', () => {
 
   test('throws error if trying to calculate when already calculated', () => {
     expect(() => {
-      const match = new Duel([
-        new Player('1', 1000),
-        new Player('2', 900)
-      ])
+      const match = new Duel([new Player('1', 1000), new Player('2', 900)])
 
       match.calculate('1')
       match.calculate('1')
@@ -93,9 +78,7 @@ describe('Duel', () => {
 
   test('throws error when calculating without 2 players', () => {
     expect(() => {
-      const match = new Duel([
-        new Player('1', 1000)
-      ])
+      const match = new Duel([new Player('1', 1000)])
 
       match.calculate('1')
     }).toThrow(ErrorType.MIN_PLAYERS)

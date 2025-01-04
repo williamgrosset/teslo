@@ -66,7 +66,7 @@ export abstract class Match {
       } else if (contestant instanceof Team) {
         const team = {
           id,
-          players: [...contestant.players.values()].map(player => ({
+          players: [...contestant.players.values()].map((player) => ({
             id: player.id,
             elo: player.elo
           }))
@@ -78,10 +78,7 @@ export abstract class Match {
     return results as T
   }
 
-  protected findOpponentElos(
-    contestantId: string,
-    contestants: Map<string, number>
-  ): number[] {
+  protected findOpponentElos(contestantId: string, contestants: Map<string, number>): number[] {
     const elos: number[] = []
 
     for (const [id, elo] of contestants) {

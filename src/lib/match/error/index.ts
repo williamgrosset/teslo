@@ -17,9 +17,7 @@ export const ErrorType = {
 
 type ErrorTypeKey = keyof typeof ErrorType
 
-export class MatchError<T extends ErrorTypeKey> extends BaseError<
-  typeof ERROR_NAME
-> {
+export class MatchError<T extends ErrorTypeKey> extends BaseError<typeof ERROR_NAME> {
   constructor(message: (typeof ErrorType)[T]) {
     super(ERROR_NAME, message)
   }

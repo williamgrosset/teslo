@@ -7,6 +7,7 @@ class TestMatch extends Match {
     super()
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   calculate(playerId: string) {
     this.completed = true
     return []
