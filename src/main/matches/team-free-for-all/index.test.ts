@@ -182,12 +182,10 @@ describe('TeamFreeForAll', () => {
 
   test('throws error if calculation does not match team size in match', () => {
     expect(() => {
-      new TeamFreeForAll(
-        [
-          new Team('1', [new Player('1', 1000)]),
-          new Team('2', [new Player('2', 900)])
-        ],
-      ).calculate(['1'])
+      new TeamFreeForAll([
+        new Team('1', [new Player('1', 1000)]),
+        new Team('2', [new Player('2', 900)])
+      ]).calculate(['1'])
     }).toThrow(ErrorType.SIZE_MISMATCH)
   })
 })

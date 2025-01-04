@@ -34,7 +34,7 @@ export class Duel extends Match {
   }
 
   addPlayers(...players: Player[]): this {
-    players.forEach(player => this.addPlayer(player))
+    players.forEach((player) => this.addPlayer(player))
     return this
   }
 

@@ -19,10 +19,7 @@ describe('FreeForAll', () => {
   })
 
   test('calculates elo for player 1 win with 2 players', () => {
-    const match = new FreeForAll([
-      new Player('1', 1000),
-      new Player('2', 900)
-    ])
+    const match = new FreeForAll([new Player('1', 1000), new Player('2', 900)])
     const results = match.calculate(['1', '2'])
 
     expect(results).toStrictEqual([
@@ -38,10 +35,7 @@ describe('FreeForAll', () => {
   })
 
   test('calculates elo for player 2 win with 2 players', () => {
-    const match = new FreeForAll([
-      new Player('1', 1000),
-      new Player('2', 900)
-    ])
+    const match = new FreeForAll([new Player('1', 1000), new Player('2', 900)])
     const results = match.calculate(['2', '1'])
 
     expect(results).toStrictEqual([
@@ -148,24 +142,17 @@ describe('FreeForAll', () => {
 
   test('throws error if trying to calculate when min players for match has not been reached', () => {
     expect(() => {
-      new FreeForAll(
-        [
-          new Player('1', 1000),
-          new Player('2', 900)
-        ],
-        {
-          minPlayers: 3
-        }
-      ).calculate(['1', '2'])
+      new FreeForAll([new Player('1', 1000), new Player('2', 900)], {
+        minPlayers: 3
+      }).calculate(['1', '2'])
     }).toThrow(ErrorType.MIN_PLAYERS)
   })
 
   test('throws error if calculation does not match player size in match', () => {
     expect(() => {
-      new FreeForAll([
-        new Player('1', 1000),
-        new Player('2', 900)
-      ]).calculate(['1'])
+      new FreeForAll([new Player('1', 1000), new Player('2', 900)]).calculate([
+        '1'
+      ])
     }).toThrow(ErrorType.SIZE_MISMATCH)
   })
 })

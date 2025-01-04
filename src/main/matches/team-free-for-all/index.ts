@@ -14,7 +14,7 @@ export class TeamFreeForAll extends Match {
     super({
       minContestants: options?.minTeams,
       maxContestants: options?.maxTeams,
-      ...options,
+      ...options
     })
 
     if (teams) {
@@ -40,7 +40,7 @@ export class TeamFreeForAll extends Match {
   }
 
   addTeams(...teams: Team[]): this {
-    teams.forEach(team => this.addTeam(team))
+    teams.forEach((team) => this.addTeam(team))
     return this
   }
 

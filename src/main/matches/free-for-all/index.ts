@@ -14,7 +14,7 @@ export class FreeForAll extends Match {
     super({
       minContestants: options?.minPlayers,
       maxContestants: options?.maxPlayers,
-      ...options,
+      ...options
     })
 
     if (players) {
@@ -37,7 +37,7 @@ export class FreeForAll extends Match {
   }
 
   addPlayers(...players: Player[]): this {
-    players.forEach(player => this.addPlayer(player))
+    players.forEach((player) => this.addPlayer(player))
     return this
   }
 

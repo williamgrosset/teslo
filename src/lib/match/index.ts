@@ -66,7 +66,7 @@ export abstract class Match {
       } else if (contestant instanceof Team) {
         const team = {
           id,
-          players: [...contestant.players.values()].map(player => ({
+          players: [...contestant.players.values()].map((player) => ({
             id: player.id,
             elo: player.elo
           }))

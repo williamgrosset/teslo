@@ -104,9 +104,7 @@ describe('TeamDuel', () => {
 
   test('throws error when calculating without 2 teams', () => {
     expect(() => {
-      new TeamDuel(
-        [new Team('1')]
-      ).calculate('1')
+      new TeamDuel([new Team('1')]).calculate('1')
     }).toThrow(ErrorType.MIN_TEAMS)
   })
 })
