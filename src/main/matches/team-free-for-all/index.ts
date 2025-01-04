@@ -66,7 +66,7 @@ export class TeamFreeForAll extends Match {
         throw new MatchError(ErrorType.TEAM_NOT_FOUND)
       }
 
-      for (const [_, player] of team.players) {
+      for (const [, player] of team.players) {
         let eloDiff = 0
 
         for (let j = 0; j < teamIds.length; j++) {
