@@ -26,11 +26,11 @@ describe('TeamFreeForAll', () => {
     ])
     expect(match).toBeDefined()
     expect(match).toBeInstanceOf(TeamFreeForAll)
-    expect(match.contestants.size).toBe(3)
+    expect(match.size).toBe(3)
   })
 
   test('adds teams to match', () => {
-    expect(match.contestants.size).toBe(3)
+    expect(match.size).toBe(3)
   })
 
   test('calculates elo for team 1 winning', () => {

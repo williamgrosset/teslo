@@ -23,7 +23,7 @@ describe('Match', () => {
     match.addContestant(player1)
     match.addContestant(player2)
 
-    expect(match.contestants.size).toBe(2)
+    expect(match.size).toBe(2)
   })
 
   test('gets results of match', () => {

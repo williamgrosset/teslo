@@ -30,6 +30,10 @@ export abstract class Match {
     return this._contestants
   }
 
+  get size(): number {
+    return this._contestants.size
+  }
+
   get completed(): boolean {
     return this._completed
   }

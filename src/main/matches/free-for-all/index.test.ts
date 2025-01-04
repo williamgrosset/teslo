@@ -12,7 +12,7 @@ describe('FreeForAll', () => {
     const match = FreeForAll.create([Player.create('1', 1000), Player.create('2', 900)])
     expect(match).toBeDefined()
     expect(match).toBeInstanceOf(FreeForAll)
-    expect(match.contestants.size).toBe(2)
+    expect(match.size).toBe(2)
   })
 
   test('calculates elo for player 1 win with 2 players', () => {

@@ -12,7 +12,7 @@ describe('Duel', () => {
     const match = Duel.create([Player.create('1', 1000), Player.create('2', 900)])
     expect(match).toBeDefined()
     expect(match).toBeInstanceOf(Duel)
-    expect(match.contestants.size).toBe(2)
+    expect(match.size).toBe(2)
   })
 
   test('throws error when adding more than 2 players', () => {

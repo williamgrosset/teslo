@@ -24,7 +24,7 @@ export class TeamDuel extends Match {
   }
 
   addTeam(team: Team): this {
-    if (this.contestants.size === DUEL_SIZE) {
+    if (this.size === DUEL_SIZE) {
       throw new MatchError(ErrorType.MAX_TEAMS)
     }
 
@@ -43,7 +43,7 @@ export class TeamDuel extends Match {
       throw new MatchError(ErrorType.MATCH_COMPLETE)
     }
 
-    if (this.contestants.size !== DUEL_SIZE) {
+    if (this.size !== DUEL_SIZE) {
       throw new MatchError(ErrorType.MIN_TEAMS)
     }
 
