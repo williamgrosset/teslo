@@ -11,5 +11,9 @@ jobs:
         run: pnpm install
       - name: Create build
         run: pnpm build
+      - name: Run lint
+        run: pnpm lint
+      - name: Run format check
+        run: pnpm format --check
       - name: Run tests
         run: pnpm test
