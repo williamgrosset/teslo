@@ -44,7 +44,7 @@ export class TeamFreeForAll extends Match {
     return this
   }
 
-  calculate(...teamIds: string[]): TeamResult[] {
+  calculate(teamIds: string[]): TeamResult[] {
     if (this.completed) {
       throw new MatchError(ErrorType.MATCH_COMPLETE)
     }

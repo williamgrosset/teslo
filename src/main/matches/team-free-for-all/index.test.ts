@@ -34,7 +34,7 @@ describe('TeamFreeForAll', () => {
   })
 
   test('calculates elo for team 1 winning', () => {
-    const results = match.calculate('1', '2', '3')
+    const results = match.calculate(['1', '2', '3'])
     expect(results).toStrictEqual([
       {
         id: '1',
@@ -79,7 +79,7 @@ describe('TeamFreeForAll', () => {
   })
 
   test('calculates elo for team 2 winning', () => {
-    const results = match.calculate('2', '1', '3')
+    const results = match.calculate(['2', '1', '3'])
     expect(results).toStrictEqual([
       {
         id: '1',
@@ -124,7 +124,7 @@ describe('TeamFreeForAll', () => {
   })
 
   test('calculates elo for team 3 winning', () => {
-    const results = match.calculate('3', '2', '1')
+    const results = match.calculate(['3', '2', '1'])
     expect(results).toStrictEqual([
       {
         id: '1',
@@ -176,7 +176,7 @@ describe('TeamFreeForAll', () => {
           new Team('2', [new Player('2', 900)])
         ],
         { minTeams: 3 }
-      ).calculate('1', '2')
+      ).calculate(['1', '2'])
     }).toThrow(ErrorType.MIN_TEAMS)
   })
 
@@ -187,7 +187,7 @@ describe('TeamFreeForAll', () => {
           new Team('1', [new Player('1', 1000)]),
           new Team('2', [new Player('2', 900)])
         ],
-      ).calculate('1')
+      ).calculate(['1'])
     }).toThrow(ErrorType.SIZE_MISMATCH)
   })
 })
