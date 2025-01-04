@@ -9,10 +9,7 @@ describe('Duel', () => {
   })
 
   test('factory method instantiates with players', () => {
-    const match = Duel.create([
-      Player.create('1', 1000),
-      Player.create('2', 900)
-    ])
+    const match = Duel.create([Player.create('1', 1000), Player.create('2', 900)])
     expect(match).toBeDefined()
     expect(match).toBeInstanceOf(Duel)
     expect(match.contestants.size).toBe(2)

@@ -22,10 +22,7 @@ export class TeamFreeForAll extends Match {
     }
   }
 
-  static create(
-    teams?: Team[],
-    options?: TeamFreeForAllOptions
-  ): TeamFreeForAll {
+  static create(teams?: Team[], options?: TeamFreeForAllOptions): TeamFreeForAll {
     return new TeamFreeForAll(teams, options)
   }
 

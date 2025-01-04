@@ -171,10 +171,7 @@ describe('TeamFreeForAll', () => {
   test('throws error if calculating without min teams', () => {
     expect(() => {
       new TeamFreeForAll(
-        [
-          new Team('1', [new Player('1', 1000)]),
-          new Team('2', [new Player('2', 900)])
-        ],
+        [new Team('1', [new Player('1', 1000)]), new Team('2', [new Player('2', 900)])],
         { minTeams: 3 }
       ).calculate(['1', '2'])
     }).toThrow(ErrorType.MIN_TEAMS)

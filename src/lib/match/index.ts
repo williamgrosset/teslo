@@ -78,10 +78,7 @@ export abstract class Match {
     return results as T
   }
 
-  protected findOpponentElos(
-    contestantId: string,
-    contestants: Map<string, number>
-  ): number[] {
+  protected findOpponentElos(contestantId: string, contestants: Map<string, number>): number[] {
     const elos: number[] = []
 
     for (const [id, elo] of contestants) {
