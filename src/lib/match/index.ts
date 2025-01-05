@@ -94,20 +94,20 @@ export abstract class Match {
     return elos
   }
 
+  protected addContestant(contestant: Contestant) {
+    if (this._completed) {
+      throw new MatchError(ErrorType.MATCH_COMPLETE)
+    }
+
+    this._contestants.set(contestant.id, contestant)
+  }
+
   getResults(): Results {
     if (!this._completed) {
       throw new MatchError(ErrorType.MATCH_INCOMPLETE)
     }
 
     return this.contestantMapToResults()
-  }
-
-  addContestant(contestant: Contestant) {
-    if (this._completed) {
-      throw new MatchError(ErrorType.MATCH_COMPLETE)
-    }
-
-    this._contestants.set(contestant.id, contestant)
   }
 
   abstract calculate(contestantIds: string | string[]): Results
