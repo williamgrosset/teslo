@@ -12,6 +12,10 @@ class TestMatch extends Match {
     this.completed = true
     return []
   }
+
+  addPlayer(player: Player) {
+    this.addContestant(player)
+  }
 }
 
 describe('Match', () => {
@@ -20,8 +24,8 @@ describe('Match', () => {
     const player2 = new Player('2', 900)
     const match = new TestMatch()
 
-    match.addContestant(player1)
-    match.addContestant(player2)
+    match.addPlayer(player1)
+    match.addPlayer(player2)
 
     expect(match.size).toBe(2)
   })
@@ -31,8 +35,8 @@ describe('Match', () => {
     const player2 = new Player('2', 900)
     const match = new TestMatch()
 
-    match.addContestant(player1)
-    match.addContestant(player2)
+    match.addPlayer(player1)
+    match.addPlayer(player2)
     match.calculate('1')
 
     const results = match.getResults()
@@ -55,8 +59,8 @@ describe('Match', () => {
       const player2 = new Player('2', 900)
       const match = new TestMatch()
 
-      match.addContestant(player1)
-      match.addContestant(player2)
+      match.addPlayer(player1)
+      match.addPlayer(player2)
       match.getResults()
     }).toThrow(ErrorType.MATCH_INCOMPLETE)
   })
