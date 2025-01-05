@@ -1,7 +1,7 @@
 {
   "name": "teslo",
   "version": "0.5.2",
-  "description": "Elo rating calculator",
+  "description": "Multiplayer elo rating system",
   "author": "William Grosset",
   "license": "MIT",
   "repository": {
@@ -13,11 +13,14 @@
     "elo",
     "rating",
     "elo-rating",
-    "elo rating",
-    "calculator",
+    "elo-rating-system",
     "multiplayer",
-    "games",
-    "chess"
+    "multiplayer-games",
+    "leaderboard",
+    "ranking-system",
+    "player-stats",
+    "matchmaking",
+    "gaming"
   ],
   "files": [
     "dist"
