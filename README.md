@@ -12,6 +12,39 @@ A lightweight JavaScript library for calculating elo rating in multiplayer games
 
 </div>
 
+## Quickstart
+
+Install the `teslo` package.
+
+```bash
+npm install teslo
+```
+
+Create a `Duel` and calculate elo ratings.
+
+```ts
+import { Player, Duel } from 'teslo'
+
+// Create a duel between 2 players
+const match = new Duel([new Player('1', 1000), new Player('2', 900)])
+
+// Calculate elo ratings for player 1 win
+const results = match.calculate('1')
+
+/*
+[
+  {
+    id: '1',
+    elo: 1012
+  },
+  {
+    id: '2',
+    elo: 888
+  }
+]
+*/
+```
+
 ## Documentation
 
 Visit [teslo.dev/docs](https://teslo.dev/docs).
