@@ -8,7 +8,7 @@
 ![Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen)
 ![Build size](https://img.shields.io/bundlejs/size/teslo?color=brightgreen)
 
-A lightweight JavaScript library for calculating elo rating in multiplayer games.
+A lightweight TypeScript library for calculating elo rating in multiplayer games.
 
 </div>
 
