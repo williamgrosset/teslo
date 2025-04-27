@@ -1,5 +1,6 @@
-import { configs as tsConfigs, default as tsPlugin } from '@typescript-eslint/eslint-plugin'
 import tsParser from '@typescript-eslint/parser'
+import tsPlugin from '@typescript-eslint/eslint-plugin'
+const { configs: tsConfigs } = tsPlugin
 
 export default [
   {

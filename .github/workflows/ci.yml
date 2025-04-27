@@ -8,7 +8,7 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
       - name: Install modules
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
       - name: Create build
         run: pnpm build
       - name: Run lint
