@@ -6,9 +6,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install pnpm
-        run: npm install -g pnpm@10.4.1
+        run: npm install -g pnpm
       - name: Install modules
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
       - name: Create build
         run: pnpm build
       - name: Run lint
