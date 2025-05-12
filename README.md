@@ -47,7 +47,7 @@ const results = match.calculate('1')
 
 ## Documentation
 
-Visit [teslo.dev/docs](https://teslo.dev/docs).
+Visit [teslo.dev](https://teslo.dev).
 
 ## License
 
