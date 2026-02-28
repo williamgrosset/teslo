@@ -67,7 +67,7 @@ export class TeamFreeForAll extends Match {
         let eloDiff = 0
 
         for (let j = 0; j < teamIds.length; j++) {
-          if (i != j) {
+          if (i !== j) {
             const opponentElo = teams.get(teamIds[j])
 
             if (!opponentElo) {
