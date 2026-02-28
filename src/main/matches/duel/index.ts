@@ -47,6 +47,10 @@ export class Duel extends Match {
       throw new MatchError(ErrorType.MIN_PLAYERS)
     }
 
+    if (!this.contestants.has(playerId)) {
+      throw new MatchError(ErrorType.PLAYER_NOT_FOUND)
+    }
+
     const players = this.contestantMapToEloMap()
 
     for (const [id, contestant] of this.contestants) {

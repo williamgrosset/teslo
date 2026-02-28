@@ -76,6 +76,14 @@ describe('Duel', () => {
     }).toThrow(ErrorType.MATCH_COMPLETE)
   })
 
+  test('throws error when calculating with non-existent player id', () => {
+    expect(() => {
+      const match = new Duel([new Player('1', 1000), new Player('2', 900)])
+
+      match.calculate('3')
+    }).toThrow(ErrorType.PLAYER_NOT_FOUND)
+  })
+
   test('throws error when calculating without 2 players', () => {
     expect(() => {
       const match = new Duel([new Player('1', 1000)])
