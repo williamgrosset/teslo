@@ -168,6 +168,18 @@ describe('TeamFreeForAll', () => {
     ])
   })
 
+  test('calculates elo for teams with 0 average elo', () => {
+    const match = new TeamFreeForAll([
+      new Team('1', [new Player('1', 1000), new Player('2', 900)]),
+      new Team('2', [new Player('3', 0), new Player('4', 0)]),
+      new Team('3', [new Player('5', 600), new Player('6', 500)])
+    ])
+    const results = match.calculate(['1', '2', '3'])
+
+    expect(results).toHaveLength(3)
+    expect(results[1].players).toBeDefined()
+  })
+
   test('throws error if calculating without min teams', () => {
     expect(() => {
       new TeamFreeForAll(

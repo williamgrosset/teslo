@@ -31,11 +31,12 @@
   "scripts": {
     "lint": "eslint .",
     "format": "prettier --write src/**/*.ts",
+    "format:check": "prettier --check src/**/*.ts",
     "build": "rollup --config",
     "clean": "rm -rf ./dist",
     "start": "node dist/index.js",
     "test": "jest",
-    "prepublish": "pnpm clean && pnpm build"
+    "prepublishOnly": "pnpm clean && pnpm build"
   },
   "devDependencies": {
     "@rollup/plugin-terser": "^0.4.4",

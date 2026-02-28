@@ -47,6 +47,10 @@ export class TeamDuel extends Match {
       throw new MatchError(ErrorType.MIN_TEAMS)
     }
 
+    if (!this.contestants.has(teamId)) {
+      throw new MatchError(ErrorType.TEAM_NOT_FOUND)
+    }
+
     const teams = this.contestantMapToEloMap()
 
     for (const [id, contestant] of this.contestants) {
