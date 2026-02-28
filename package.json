@@ -36,7 +36,7 @@
     "clean": "rm -rf ./dist",
     "start": "node dist/index.js",
     "test": "jest",
-    "prepublish": "pnpm clean && pnpm build"
+    "prepublishOnly": "pnpm clean && pnpm build"
   },
   "devDependencies": {
     "@rollup/plugin-terser": "^0.4.4",
