@@ -135,6 +135,15 @@ describe('FreeForAll', () => {
     expect(results[99].elo).toBe(984)
   })
 
+  test('calculates elo for players with 0 elo', () => {
+    const match = new FreeForAll([new Player('1', 1000), new Player('2', 0), new Player('3', 500)])
+    const results = match.calculate(['1', '2', '3'])
+
+    expect(results[0].elo).toBeGreaterThan(0)
+    expect(results[1].elo).toBeDefined()
+    expect(results[2].elo).toBeDefined()
+  })
+
   test('throws error if trying to calculate when min players for match has not been reached', () => {
     expect(() => {
       new FreeForAll([new Player('1', 1000), new Player('2', 900)], {

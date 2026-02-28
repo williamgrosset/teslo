@@ -69,7 +69,7 @@ export class FreeForAll extends Match {
         if (i != j) {
           const opponentElo = players.get(playerIds[j])
 
-          if (!opponentElo) {
+          if (opponentElo === undefined) {
             throw new MatchError(ErrorType.MISSING_OPPONENT_ELO)
           }
 
