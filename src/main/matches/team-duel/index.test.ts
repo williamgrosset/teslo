@@ -102,6 +102,12 @@ describe('TeamDuel', () => {
     ])
   })
 
+  test('throws error when calculating with non-existent team id', () => {
+    expect(() => {
+      match.calculate('3')
+    }).toThrow(ErrorType.TEAM_NOT_FOUND)
+  })
+
   test('throws error when calculating without 2 teams', () => {
     expect(() => {
       new TeamDuel([new Team('1')]).calculate('1')
